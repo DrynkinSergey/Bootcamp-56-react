@@ -1,6 +1,7 @@
 import React from 'react'
 import { Header } from './components/Header'
 import { Section } from './components/Section'
+import { Wrapper } from './components/Wrapper'
 
 export const App = () => {
 	const moviesData = [
@@ -18,18 +19,21 @@ export const App = () => {
 	return (
 		<>
 			<Header />
-
-			{/* {isOnline === true ? <h1>ONLINE</h1> : <h1>Offline</h1>} */}
 			{isOnline ? <h1>ONLINE</h1> : <h1>Offline</h1>}
-
 			{isOnline ? (
 				<Section sectionTitle='Movies' data={moviesData} />
 			) : (
 				<Section sectionTitle='Goods' data={goodsData} />
 			)}
-
 			{isOnline ? <h2>Welcome back</h2> : <h2>Please login</h2>}
-			{/* {(isOnline && <h2>Weclome back</h2>) || <h2>Please login</h2>} */}
+
+			<Wrapper>
+				<h1>Hello world</h1>
+			</Wrapper>
+
+			<Wrapper>
+				<h1>hello</h1>
+			</Wrapper>
 		</>
 	)
 }
