@@ -25,7 +25,8 @@ export const Card = styled.li`
 	padding: 10px 12px;
 	box-shadow: ${({ theme }) => theme.shadows.default};
 	color: ${({ theme }) => theme.colors.second};
-	background-color: ${({ $index }) => $index % 2 && 'lightgray'};
+	background-color: ${({ $completed }) =>
+		$completed ? 'rgba(124, 23, 12 , .5)' : 'rgb(255, 111, 22)'};
 	display: flex;
 	justify-content: space-between;
 	gap: 10px;

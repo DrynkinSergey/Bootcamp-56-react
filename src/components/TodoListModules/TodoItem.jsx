@@ -1,19 +1,19 @@
 import React from 'react'
-import styles from './TodoItem.module.scss'
+import s from './TodoItem.module.scss'
 import clsx from 'clsx'
 export const TodoItem = ({ todo, completed, id, index }) => {
 	return (
 		// <li className={`${styles.card} ${styles.italic}`}>
 		<li
-			className={clsx(styles.card, styles.italic, {
-				[styles.completed]: index % 2 === 0,
+			className={clsx(s.card, s.italic, {
+				[s.completed]: index % 2 === 0,
 				// [styles.uncompleted]: !completed,
 			})}
 		>
 			<span>
 				{index + 1}. {todo}
 			</span>
-			<button className={styles.deleteBtn}>Delete</button>
+			<button className={s.deleteBtn}>Delete</button>
 		</li>
 	)
 }
