@@ -8,7 +8,7 @@ export const TodoListModules = ({ list }) => {
 			<ul className={styles.list}>
 				{list.map((todo, index) => (
 					// <TodoItem todo={todo.todo} id={todo.id} completed={todo.completed} />
-					<TodoItem {...todo} index={index} />
+					<TodoItem key={todo.id} {...todo} index={index} />
 				))}
 			</ul>
 		</div>

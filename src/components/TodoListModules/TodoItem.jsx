@@ -6,8 +6,8 @@ export const TodoItem = ({ todo, completed, id, index }) => {
 		// <li className={`${styles.card} ${styles.italic}`}>
 		<li
 			className={clsx(styles.card, styles.italic, {
-				[styles.completed]: completed,
-				[styles.uncompleted]: !completed,
+				[styles.completed]: index % 2 === 0,
+				// [styles.uncompleted]: !completed,
 			})}
 		>
 			<span>
