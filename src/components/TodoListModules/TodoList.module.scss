@@ -1,0 +1,19 @@
+@import './../../styles/_vars';
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-color: lightgray;
+	flex-direction: column;
+	gap: 10px;
+}
+.title {
+	color: $mainColor;
+	font-size: 3rem;
+}
+.list {
+	display: flex;
+	gap: 10px;
+	flex-direction: column;
+}

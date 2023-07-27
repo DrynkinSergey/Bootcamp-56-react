@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './TodoList.module.css'
+import styles from './TodoList.module.scss'
 import { TodoItem } from './TodoItem'
 export const TodoListModules = ({ list }) => {
 	return (

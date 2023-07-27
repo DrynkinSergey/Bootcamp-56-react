@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './TodoItem.module.css'
+import styles from './TodoItem.module.scss'
 import clsx from 'clsx'
 export const TodoItem = ({ todo, completed, id, index }) => {
 	return (
