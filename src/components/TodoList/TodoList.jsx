@@ -1,17 +1,20 @@
 import { StyledButton } from '../Counter/Counter.styled'
 import { StyledInput, StyledTodo, StyledTodoList } from './TodoList.styled'
-import todoData from './../../assets/todos.json'
+import todos from './../../assets/todos.json'
+import { Flex } from '../../styles/GlobalStyles'
 
 export const TodoList = () => {
 	return (
 		<div>
 			<StyledTodoList>
-				<StyledInput type='text' />
-				<StyledButton>Add</StyledButton>
-				{[].map(item => (
+				<Flex $height='auto'>
+					<StyledInput type='text' />
+					<StyledButton>Add</StyledButton>
+				</Flex>
+				{todos.map(item => (
 					<StyledTodo>
 						<input type='checkbox' />
-						<span>todo</span>
+						<span>{item.todo}</span>
 						<StyledButton size='18px'>Delete</StyledButton>
 					</StyledTodo>
 				))}
