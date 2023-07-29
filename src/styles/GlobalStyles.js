@@ -18,3 +18,15 @@ export const Box = styled.div`
 	width: 100px;
 	background-color: ${props => props.$bg || 'black'};
 `
+export const Button = styled.button`
+	padding: 10px 20px;
+	border: none;
+	border-radius: 8px;
+	color: ${props => props.$color || 'inherit'};
+	background-color: ${props => props.$bg || 'inherit'};
+	box-shadow: ${({ theme }) => theme.shadows.default};
+	&:hover {
+		cursor: pointer;
+		background-color: lightgoldenrodyellow;
+	}
+`
