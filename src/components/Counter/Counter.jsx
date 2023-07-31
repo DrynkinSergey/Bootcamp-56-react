@@ -11,6 +11,7 @@ export class Counter extends React.Component {
 		counter: 0,
 		step: 1,
 	}
+
 	handleIncrement = () => {
 		// Без попереднього
 		// this.setState({ counter: this.state.counter + 1 })
