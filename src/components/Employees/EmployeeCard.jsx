@@ -29,7 +29,7 @@ const UserCard = styled.li`
 	border: 3px solid;
 	border-radius: 12px;
 	padding: 15px;
-
+	background-color: white;
 	width: 25%;
 	box-shadow: 4px 5px 2px 1px gray;
 `

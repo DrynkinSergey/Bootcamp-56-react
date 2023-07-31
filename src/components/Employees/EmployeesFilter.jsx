@@ -11,8 +11,8 @@ export const EmployeesFilter = () => {
 			<h1>Filters</h1>
 			<Flex $height='100px' $items='center'>
 				<StyledInput type='text' />
-				<label htmlFor=''>
-					<input type='checkbox' />
+				<label htmlFor='isAvailable'>
+					<input type='checkbox' id='isAvailable' />
 					<span> isAvailable</span>
 				</label>
 			</Flex>
