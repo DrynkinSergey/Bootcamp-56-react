@@ -44,7 +44,13 @@ export class TodoList extends React.Component {
 		this.setState(prev => ({
 			todos: prev.todos.map(todo => {
 				if (todo.id === id) {
-					return { ...todo, completed: !todo.completed }
+					return {
+						// todo: todo.todo,
+						// id: todo.id,
+						// completed: todo.completed,
+						...todo,
+						completed: !todo.completed,
+					}
 				} else {
 					return todo
 				}
