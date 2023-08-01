@@ -1,19 +1,16 @@
 import styled from 'styled-components'
 import { EmployeeCard } from './EmployeeCard'
 
-export const EmployeeList = ({ users = [] }) => {
-	if (!users.length) {
-		return <h1>Немає юзерів для роботи</h1>
-	}
-
+export const EmployeeList = ({ users = [], onDeleteUser }) => {
 	return (
 		<UserList>
 			{users.map(user => (
-				<EmployeeCard key={user.id} {...user} />
+				<EmployeeCard key={user.id} {...user} onDeleteUser={onDeleteUser} />
 			))}
 		</UserList>
 	)
 }
+
 const UserList = styled.ul`
 	display: flex;
 	flex-wrap: wrap;

@@ -2,7 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { StyledButton } from '../Counter/Counter.styled'
 
-export const EmployeeCard = ({ id, name, email, bio, skills }) => {
+export const EmployeeCard = ({
+	id,
+	name,
+	email,
+	bio,
+	skills,
+	onDeleteUser,
+}) => {
 	return (
 		<UserCard>
 			<h3>{name}</h3>
@@ -15,7 +22,11 @@ export const EmployeeCard = ({ id, name, email, bio, skills }) => {
 					</Skill>
 				))}
 			</SkillList>
-			<StyledButton $border='2px' $size='.8rem'>
+			<StyledButton
+				onClick={() => onDeleteUser(id)}
+				$border='2px'
+				$size='.8rem'
+			>
 				Delete
 			</StyledButton>
 		</UserCard>
