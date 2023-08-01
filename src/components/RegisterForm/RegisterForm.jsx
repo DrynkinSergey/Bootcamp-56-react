@@ -23,8 +23,18 @@ export class RegisterForm extends Component {
 
 	handleChangeInput = e => {
 		const { name, value } = e.target
-
+		if (value.includes('!')) {
+			alert('Invalid word')
+		}
+		console.log(name)
 		this.setState({ [name]: value })
+		// this.setState({ name: value })
+		// this.setState({ password: value })
+
+		// const a = {
+		// 	[e.target.name]: 'dsfasf',
+		// }
+		// console.log(a[name])
 	}
 
 	render() {
