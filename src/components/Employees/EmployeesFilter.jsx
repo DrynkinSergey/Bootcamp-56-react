@@ -5,12 +5,16 @@ import { Flex } from '../../styles/GlobalStyles'
 
 const skilsList = ['all', 'react', 'angular', 'vue']
 
-export const EmployeesFilter = () => {
+export const EmployeesFilter = ({ searchValue, onChangeSearchValue }) => {
 	return (
 		<Filters>
 			<h1>Filters</h1>
 			<Flex $height='100px' $items='center'>
-				<StyledInput type='text' />
+				<StyledInput
+					type='text'
+					value={searchValue}
+					onChange={e => onChangeSearchValue(e.target.value)}
+				/>
 				<label htmlFor='isAvailable'>
 					<input type='checkbox' id='isAvailable' />
 					<span> isAvailable</span>

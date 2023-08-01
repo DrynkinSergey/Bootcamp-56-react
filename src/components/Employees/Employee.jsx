@@ -6,6 +6,7 @@ import React from 'react'
 export class Employee extends React.Component {
 	state = {
 		users: userData,
+		searchValue: '',
 	}
 	handleDeleteUser = id => {
 		console.log('user #=>>> ', id)
@@ -13,12 +14,33 @@ export class Employee extends React.Component {
 			users: prev.users.filter(user => user.id !== id),
 		}))
 	}
+
+	handleChangeSearchValue = value => {
+		this.setState({ searchValue: value })
+	}
+
+	getFilteredData = () => {
+		return this.state.users.filter(user =>
+			user.name
+				.toLowerCase()
+				.includes(this.state.searchValue.toLowerCase().trim())
+		)
+	}
+
 	render() {
-		const { users } = this.state
+		const { searchValue } = this.state
+		// console.log(this.getFilteredData())
+		const filteredData = this.getFilteredData()
 		return (
 			<>
-				<EmployeesFilter />
-				<EmployeeList users={users} onDeleteUser={this.handleDeleteUser} />
+				<EmployeesFilter
+					searchValue={searchValue}
+					onChangeSearchValue={this.handleChangeSearchValue}
+				/>
+				<EmployeeList
+					users={filteredData}
+					onDeleteUser={this.handleDeleteUser}
+				/>
 			</>
 		)
 	}
