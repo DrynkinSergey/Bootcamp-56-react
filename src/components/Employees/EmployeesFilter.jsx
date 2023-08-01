@@ -8,8 +8,10 @@ const skilsList = ['all', 'react', 'angular', 'vue']
 export const EmployeesFilter = ({
 	searchValue,
 	activeSkill,
+	isAvailable,
 	onChangeSearchValue,
 	onChangeSkill,
+	onChangeAvailable,
 }) => {
 	return (
 		<Filters>
@@ -21,7 +23,12 @@ export const EmployeesFilter = ({
 					onChange={e => onChangeSearchValue(e.target.value)}
 				/>
 				<label htmlFor='isAvailable'>
-					<input type='checkbox' id='isAvailable' />
+					<input
+						type='checkbox'
+						id='isAvailable'
+						checked={isAvailable}
+						onChange={onChangeAvailable}
+					/>
 					<span> isAvailable</span>
 				</label>
 			</Flex>

@@ -8,6 +8,7 @@ export class Employee extends React.Component {
 		users: userData,
 		searchValue: '',
 		activeSkill: 'all',
+		isAvailable: false,
 	}
 	handleDeleteUser = id => {
 		console.log('user #=>>> ', id)
@@ -32,22 +33,28 @@ export class Employee extends React.Component {
 					? user
 					: user.skills.includes(this.state.activeSkill)
 			)
+			.filter(user => (this.state.isAvailable ? user.isOpenToWork : user))
 	}
 
 	handleChangeSkill = skill => {
 		// console.log(skill)
 		this.setState({ activeSkill: skill })
 	}
+	handleChangeIsAvailable = () => {
+		this.setState(prev => ({ isAvailable: !prev.isAvailable }))
+	}
 	render() {
-		const { searchValue, activeSkill } = this.state
+		const { searchValue, activeSkill, isAvailable } = this.state
 		// console.log(this.getFilteredData())
 		const filteredData = this.getFilteredData()
 		return (
 			<>
 				<EmployeesFilter
+					isAvailable={isAvailable}
 					activeSkill={activeSkill}
 					searchValue={searchValue}
 					onChangeSkill={this.handleChangeSkill}
+					onChangeAvailable={this.handleChangeIsAvailable}
 					onChangeSearchValue={this.handleChangeSearchValue}
 				/>
 				<EmployeeList
