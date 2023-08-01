@@ -5,7 +5,12 @@ import { Flex } from '../../styles/GlobalStyles'
 
 const skilsList = ['all', 'react', 'angular', 'vue']
 
-export const EmployeesFilter = ({ searchValue, onChangeSearchValue }) => {
+export const EmployeesFilter = ({
+	searchValue,
+	activeSkill,
+	onChangeSearchValue,
+	onChangeSkill,
+}) => {
 	return (
 		<Filters>
 			<h1>Filters</h1>
@@ -26,7 +31,9 @@ export const EmployeesFilter = ({ searchValue, onChangeSearchValue }) => {
 						<input
 							name='radioButtonName'
 							type='radio'
+							checked={radioButtonName === activeSkill}
 							value={radioButtonName}
+							onChange={() => onChangeSkill(radioButtonName)}
 						/>
 						<span> {radioButtonName}</span>
 					</label>
