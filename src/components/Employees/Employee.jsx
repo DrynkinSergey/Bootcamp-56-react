@@ -2,6 +2,7 @@ import { EmployeesFilter } from './EmployeesFilter'
 import { EmployeeList } from './EmployeeList'
 import userData from './../../assets/users.json'
 import React from 'react'
+import { getFilteredData } from '../../services/getFileteredData'
 
 export class Employee extends React.Component {
 	state = {
@@ -10,6 +11,7 @@ export class Employee extends React.Component {
 		activeSkill: 'all',
 		isAvailable: false,
 	}
+
 	handleDeleteUser = id => {
 		console.log('user #=>>> ', id)
 		this.setState(prev => ({
@@ -21,32 +23,19 @@ export class Employee extends React.Component {
 		this.setState({ searchValue: value })
 	}
 
-	getFilteredData = () => {
-		return this.state.users
-			.filter(user =>
-				user.name
-					.toLowerCase()
-					.includes(this.state.searchValue.toLowerCase().trim())
-			)
-			.filter(user =>
-				this.state.activeSkill === 'all'
-					? user
-					: user.skills.includes(this.state.activeSkill)
-			)
-			.filter(user => (this.state.isAvailable ? user.isOpenToWork : user))
-	}
-
 	handleChangeSkill = skill => {
 		// console.log(skill)
 		this.setState({ activeSkill: skill })
 	}
+
 	handleChangeIsAvailable = () => {
 		this.setState(prev => ({ isAvailable: !prev.isAvailable }))
 	}
+
 	render() {
 		const { searchValue, activeSkill, isAvailable } = this.state
 		// console.log(this.getFilteredData())
-		const filteredData = this.getFilteredData()
+		const filteredData = getFilteredData(this.state)
 		return (
 			<>
 				<EmployeesFilter
@@ -65,11 +54,3 @@ export class Employee extends React.Component {
 		)
 	}
 }
-// export const Employee = () => {
-// return (
-// 	<>
-// 		<EmployeesFilter />
-// 		<EmployeeList users={userData} />
-// 	</>
-// )
-// }
