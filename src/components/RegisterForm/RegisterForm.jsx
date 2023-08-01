@@ -17,17 +17,18 @@ export class RegisterForm extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault()
-		console.log(this.state)
+		this.props.register(this.state)
 		this.setState(INITIAL_STATE)
 	}
 
-	handleChangeInput = e => {
-		const { name, value } = e.target
+	handleChangeInput = ({ target }) => {
+		const { name, value } = target
 		if (value.includes('!')) {
 			alert('Invalid word')
 		}
-		console.log(name)
+
 		this.setState({ [name]: value })
+
 		// this.setState({ name: value })
 		// this.setState({ password: value })
 

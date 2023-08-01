@@ -7,7 +7,7 @@ import {
 	StyledTitle,
 } from './RegisterForm.styled'
 
-export const UnControlledRegisterForm = () => {
+export const UnControlledRegisterForm = ({ register }) => {
 	const handleSubmit = e => {
 		e.preventDefault()
 		const form = e.currentTarget
@@ -19,7 +19,7 @@ export const UnControlledRegisterForm = () => {
 			form.reset()
 			return
 		}
-		console.log({ name, email, password })
+		register({ name, email, password })
 		form.reset()
 	}
 	return (
@@ -43,7 +43,7 @@ export const UnControlledRegisterForm = () => {
 				</StyledLabel>
 
 				<br />
-				<StyledButton>Register</StyledButton>
+				<StyledButton type='submit'>Register</StyledButton>
 			</StyledLoginForm>
 		</FlexContainer>
 	)
