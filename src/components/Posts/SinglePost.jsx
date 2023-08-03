@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex, StyledPost, StyledTags, StyledTitle, Tag } from './Posts.styled'
 import { AiFillHeart } from 'react-icons/ai'
-export const SinglePost = ({ id, title, body, tags, reactions }) => {
+export const SinglePost = ({ title, body, tags, reactions }) => {
 	return (
 		<StyledPost>
 			<div>
