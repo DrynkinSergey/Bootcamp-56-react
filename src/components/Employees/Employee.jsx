@@ -3,6 +3,7 @@ import { EmployeeList } from './EmployeeList'
 import userData from './../../assets/users.json'
 import React from 'react'
 import { getFilteredData } from '../../services/getFileteredData'
+import { Modal } from '../Modal/Modal'
 
 export class Employee extends React.Component {
 	state = {
@@ -10,10 +11,30 @@ export class Employee extends React.Component {
 		searchValue: '',
 		activeSkill: 'all',
 		isAvailable: false,
+		isModalOpen: false,
+	}
+
+	componentDidMount() {
+		console.log('Mount')
+		// setTimeout(() => {
+		// 	this.setState({ isModalOpen: true })
+		// }, 3000)
+		const users = JSON.parse(window.localStorage.getItem('USERS'))
+		if (users.length) {
+			this.setState({ users })
+		}
+	}
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.users.length !== this.state.users.length) {
+			window.localStorage.setItem('USERS', JSON.stringify(this.state.users))
+		}
+	}
+
+	toggleModal = () => {
+		this.setState(prev => ({ isModalOpen: !prev.isModalOpen }))
 	}
 
 	handleDeleteUser = id => {
-		console.log('user #=>>> ', id)
 		this.setState(prev => ({
 			users: prev.users.filter(user => user.id !== id),
 		}))
@@ -33,12 +54,13 @@ export class Employee extends React.Component {
 	}
 
 	render() {
-		const { searchValue, activeSkill, isAvailable } = this.state
+		const { searchValue, activeSkill, isAvailable, isModalOpen } = this.state
 		// console.log(this.getFilteredData())
 		const filteredData = getFilteredData(this.state)
 		return (
 			<>
 				<EmployeesFilter
+					toggleModal={this.toggleModal}
 					isAvailable={isAvailable}
 					activeSkill={activeSkill}
 					searchValue={searchValue}
@@ -46,10 +68,12 @@ export class Employee extends React.Component {
 					onChangeAvailable={this.handleChangeIsAvailable}
 					onChangeSearchValue={this.handleChangeSearchValue}
 				/>
-				<EmployeeList
-					users={filteredData}
-					onDeleteUser={this.handleDeleteUser}
-				/>
+				<EmployeeList users={filteredData} onDeleteUser={this.handleDeleteUser} />
+				{isModalOpen && (
+					<Modal onClose={this.toggleModal}>
+						<h1>Продам холодильник</h1>
+					</Modal>
+				)}
 			</>
 		)
 	}

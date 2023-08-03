@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-	Flex,
-	FlexContainer,
-	StyledButton,
-	StyledCounter,
-} from './Counter.styled'
+import { Flex, FlexContainer, StyledButton, StyledCounter } from './Counter.styled'
 
 export class Counter extends React.Component {
 	state = {
@@ -12,11 +7,29 @@ export class Counter extends React.Component {
 		step: 1,
 	}
 
-	handleIncrement = () => {
-		// Без попереднього
-		// this.setState({ counter: this.state.counter + 1 })
+	componentDidMount() {
+		console.log('Counter is mount')
+	}
 
-		// З попереднім станом
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.counter !== this.state.counter) {
+			console.log('Counter was updated')
+		}
+		if (prevState.step !== this.state.step) {
+			console.log('Step was updated')
+		}
+		// if (prevState.step) console.log('Updated counter or step')
+		if (this.state.counter === 5 && this.state.step !== 10) {
+			console.log('Update step')
+			this.setState({ step: 10 })
+		}
+	}
+
+	updateToTen = () => {
+		this.setState({ step: 10 })
+	}
+
+	handleIncrement = () => {
 		this.setState(prevState => {
 			return {
 				counter: prevState.counter + prevState.step,
@@ -25,7 +38,6 @@ export class Counter extends React.Component {
 	}
 
 	handleDecrement = () => {
-		// this.setState({ counter: this.state.counter - 1 })
 		this.setState(prevState => ({
 			counter: prevState.counter - prevState.step,
 		}))
@@ -35,7 +47,6 @@ export class Counter extends React.Component {
 		this.setState({ counter: 0, step: 1 })
 	}
 	handleChangeStep = e => {
-		console.log(e.target.value)
 		this.setState({ step: +e.target.value })
 	}
 
@@ -43,14 +54,8 @@ export class Counter extends React.Component {
 		return (
 			<FlexContainer>
 				<StyledCounter>
-					<input
-						placeholder='change step'
-						value={this.state.step}
-						onChange={this.handleChangeStep}
-					/>
-					<h2 style={{ color: 'white', fontSize: '3rem' }}>
-						{this.state.counter}
-					</h2>
+					<input placeholder='change step' value={this.state.step} onChange={this.handleChangeStep} />
+					<h2 style={{ color: 'white', fontSize: '3rem' }}>{this.state.counter}</h2>
 					<Flex>
 						<StyledButton onClick={this.handleDecrement}>minus</StyledButton>
 						<StyledButton onClick={this.handleReset}>reset</StyledButton>

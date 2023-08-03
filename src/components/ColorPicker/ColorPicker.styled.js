@@ -7,7 +7,6 @@ export const StyledBackgroundTheme = styled.div`
 	transition: background-color 0.5s linear;
 	width: 100vw;
 	background-color: ${props => {
-		console.log(props)
 		return props.$bg
 	}};
 `
