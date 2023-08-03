@@ -1,7 +1,8 @@
 import { StyledBackgroundTheme, StyledColorPalette, StyledColor, StyledColorsList } from './ColorPicker.styled'
 import React from 'react'
 import colors from '../../assets/colors.json'
-export class ColorPicker extends React.Component {
+import { toast } from 'react-toastify'
+export class ColorPicker extends React.PureComponent {
 	static defaultProps = {
 		colors,
 		message: 'Ми забули месседж',
@@ -12,23 +13,31 @@ export class ColorPicker extends React.Component {
 		currentColor: 'white',
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		return this.state.currentColor !== nextState.currentColor
-	}
+	// shouldComponentUpdate(nextProps, nextState) {
+	// 	// white !== white ==>>> false
+	// 	// white !== lightblue ==>>> true
+	// 	return this.state.currentColor !== nextState.currentColor
+	// }
 	componentDidUpdate(prevProps, prevState) {
-		console.log('update')
+		if (prevProps.text !== this.props.text) {
+			console.log('update props')
+		}
+		if (prevState.currentColor !== this.state.currentColor) {
+			console.log('update state')
+		}
 	}
 
 	handleChangeColor = color => {
 		this.setState({ currentColor: color })
+		toast.success('You changed color')
 	}
 
 	render() {
 		const { currentColor, colors } = this.state
-		const { message } = this.props
+		const { message, text } = this.props
 		return (
 			<StyledBackgroundTheme $bg={currentColor}>
-				<h1>Our props message: {message}</h1>
+				<h1>Our props message: {text}</h1>
 				<h1>Our color: {currentColor}</h1>
 				<StyledColorPalette>
 					<StyledColorsList>
