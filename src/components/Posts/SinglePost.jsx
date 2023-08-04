@@ -10,7 +10,7 @@ export const SinglePost = ({ title, body, tags, reactions }) => {
 			</div>
 			<StyledTags>
 				{tags.map(tag => (
-					<Tag key={tag.id}>{tag}</Tag>
+					<Tag key={tag}>{tag}</Tag>
 				))}
 			</StyledTags>
 			<Flex>
