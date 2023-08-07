@@ -34,6 +34,7 @@ export const Modal = ({ children, onClose }) => {
 		return () => {
 			console.log('Modal close')
 			document.removeEventListener('keydown', handleKeyDown)
+
 			clearInterval(myInterval.current)
 		}
 	}, [onClose])

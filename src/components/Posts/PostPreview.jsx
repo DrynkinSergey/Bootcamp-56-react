@@ -4,7 +4,7 @@ import { Spinner } from './Spinner'
 import { Posts } from './Posts'
 import { toast } from 'react-toastify'
 import { fetchPosts } from '../../Services/api'
-import { Component, useEffect, useState } from 'react'
+import { Component, useEffect, useRef, useState } from 'react'
 
 export const PostPreview = () => {
 	const [posts, setPosts] = useState([])
@@ -14,9 +14,26 @@ export const PostPreview = () => {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState('')
 	const [query, setQuery] = useState('')
+	const [totalRenderState, setTotalRenderState] = useState(0)
+	const isFirstRender = useRef(true)
+	const totalRender = useRef(0)
+	useEffect(() => {
+		// setTotalRenderState(prev => prev + 1)
+		console.log(`Компонент оновився ${totalRenderState} разів`)
+	}, [totalRenderState])
 
 	useEffect(() => {
 		// Створення функції для запиту
+		// if (isFirstRender.current) {
+		// 	console.log('Відбувся перший рендер, ми його пропускаємо')
+		// 	isFirstRender.current = false
+		// 	return
+		// }
+
+		if (!query) {
+			return
+		}
+
 		const fetchData = async () => {
 			try {
 				//Встановлення лоад в тру
