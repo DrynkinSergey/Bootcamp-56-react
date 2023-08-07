@@ -1,9 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Flex, FlexContainer, StyledButton, StyledCounter } from './Counter.styled'
 
 export const Counter = () => {
 	const [counter, setCounter] = useState(0)
 	const [step, setStep] = useState(1)
+
+	// Функція виконається один раз при монтуванні
+	useEffect(() => {
+		console.log('Counter is mount')
+	}, [])
+
+	useEffect(() => {
+		if (!counter) {
+			return
+		}
+		console.log('Counter was updated')
+		if (counter === 5) {
+			console.log('Hello')
+		}
+	}, [counter])
+
+	useEffect(() => {
+		console.log('Step or counter was updated')
+	}, [step, counter])
 
 	const handleIncrement = () => {
 		setCounter(prev => prev + step)

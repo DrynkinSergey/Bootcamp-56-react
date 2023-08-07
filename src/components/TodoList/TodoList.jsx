@@ -3,15 +3,23 @@ import { StyledButton } from '../Counter/Counter.styled'
 import { StyledInput, StyledTodo, StyledTodoList } from './TodoList.styled'
 import todoData from './../../assets/todos.json'
 import { Flex } from '../../styles/GlobalStyles'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 export const TodoList = () => {
 	// state = {
 	// 	todos,
 	// 	newTodoValue: '',
 	// }
+	const myRef = useRef()
 	const [todos, setTodos] = useState(todoData)
 	const [newTodoValue, setNewTodoValue] = useState('')
+
+	useEffect(() => {
+		myRef.current.focus()
+
+		console.log(myRef.current)
+		console.log(myRef.current.value)
+	}, [])
 
 	const handleAddTodo = () => {
 		setTodos(prev => [...prev, { id: nanoid(), todo: newTodoValue, completed: false }])
@@ -21,6 +29,7 @@ export const TodoList = () => {
 		// 	todos: [...prev.todos, { id: nanoid(), todo: prev.newTodoValue, completed: false }],
 		// 	newTodoValue: '',
 		// }))
+		myRef.current.focus()
 	}
 
 	const handleDelete = id => {
@@ -65,6 +74,8 @@ export const TodoList = () => {
 
 	const handleClear = () => {
 		setTodos([])
+		myRef.current.focus()
+
 		// this.setState({ todos: [] })
 	}
 
@@ -72,7 +83,7 @@ export const TodoList = () => {
 		<>
 			<StyledTodoList>
 				<Flex $height='auto'>
-					<StyledInput value={newTodoValue} onChange={handleChangeInput} type='text' />
+					<StyledInput ref={myRef} value={newTodoValue} onChange={handleChangeInput} type='text' />
 					<StyledButton onClick={handleAddTodo}>Add</StyledButton>
 				</Flex>
 
