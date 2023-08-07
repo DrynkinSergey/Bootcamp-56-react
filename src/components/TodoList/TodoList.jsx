@@ -1,101 +1,94 @@
 import { nanoid } from 'nanoid'
 import { StyledButton } from '../Counter/Counter.styled'
 import { StyledInput, StyledTodo, StyledTodoList } from './TodoList.styled'
-import todos from './../../assets/todos.json'
+import todoData from './../../assets/todos.json'
 import { Flex } from '../../styles/GlobalStyles'
-import React from 'react'
+import React, { useState } from 'react'
 
-export class TodoList extends React.Component {
-	state = {
-		todos,
-		newTodoValue: '',
-	}
-	handleAddTodo = () => {
-		this.setState(prev => ({
-			todos: [
-				...prev.todos,
-				{ id: nanoid(), todo: prev.newTodoValue, completed: false },
-			],
-			newTodoValue: '',
-		}))
-	}
+export const TodoList = () => {
+	// state = {
+	// 	todos,
+	// 	newTodoValue: '',
+	// }
+	const [todos, setTodos] = useState(todoData)
+	const [newTodoValue, setNewTodoValue] = useState('')
 
-	handleDelete = id => {
-		console.log(id)
-		this.setState(prev => ({
-			todos: prev.todos.filter(todo => {
-				return todo.id !== id
-			}),
-		}))
-	}
-	handleChangeInput = e => {
-		this.setState({ newTodoValue: e.target.value })
-	}
-
-	handleToggleTodo = id => {
-		// Тернарне вираження
+	const handleAddTodo = () => {
+		setTodos(prev => [...prev, { id: nanoid(), todo: newTodoValue, completed: false }])
+		setNewTodoValue('')
+		// //
 		// this.setState(prev => ({
-		// 	todos: prev.todos.map(todo =>
-		// 		todo.id === id ? { ...todo, completed: !todo.completed } : todo
-		// 	),
+		// 	todos: [...prev.todos, { id: nanoid(), todo: prev.newTodoValue, completed: false }],
+		// 	newTodoValue: '',
 		// }))
-		// Традиційне іф елс
-
-		this.setState(prev => ({
-			todos: prev.todos.map(todo => {
-				if (todo.id === id) {
-					return {
-						// todo: todo.todo,
-						// id: todo.id,
-						// completed: todo.completed,
-						...todo,
-						completed: !todo.completed,
-					}
-				} else {
-					return todo
-				}
-			}),
-		}))
 	}
 
-	handleClear = () => {
-		this.setState({ todos: [] })
+	const handleDelete = id => {
+		console.log(id)
+		setTodos(prev => prev.filter(todo => todo.id !== id))
+		// this.setState(prev => ({
+		// 	todos: prev.todos.filter(todo => {
+		// 		return todo.id !== id
+		// 	}),
+		// }))
+	}
+	const handleChangeInput = e => {
+		setNewTodoValue(e.target.value)
+		// this.setState({ newTodoValue: e.target.value })
 	}
 
-	render() {
-		const { todos, newTodoValue } = this.state
-		return (
-			<>
-				<StyledTodoList>
-					<Flex $height='auto'>
-						<StyledInput
-							value={newTodoValue}
-							onChange={this.handleChangeInput}
-							type='text'
-						/>
-						<StyledButton onClick={this.handleAddTodo}>Add</StyledButton>
-					</Flex>
-					{todos.map(item => (
-						<StyledTodo key={item.id}>
-							<input
-								checked={item.completed}
-								type='checkbox'
-								onChange={() => this.handleToggleTodo(item.id)}
-							/>
-							<span>{item.todo}</span>
-							<StyledButton
-								onClick={() => this.handleDelete(item.id)}
-								size='18px'
-							>
-								Delete
-							</StyledButton>
-						</StyledTodo>
-					))}
-					<button onClick={this.handleClear}>Clear</button>
-				</StyledTodoList>
-			</>
+	const handleToggleTodo = id => {
+		setTodos(prev =>
+			prev.map(todo =>
+				todo.id === id
+					? {
+							...todo,
+							completed: !todo.completed,
+					  }
+					: todo
+			)
 		)
+
+		// this.setState(prev => ({
+		// 	todos: prev.todos.map(todo => {
+		// 		if (todo.id === id) {
+		// 			return {
+		// 				...todo,
+		// 				completed: !todo.completed,
+		// 			}
+		// 		} else {
+		// 			return todo
+		// 		}
+		// 	}),
+		// }))
 	}
+
+	const handleClear = () => {
+		setTodos([])
+		// this.setState({ todos: [] })
+	}
+
+	return (
+		<>
+			<StyledTodoList>
+				<Flex $height='auto'>
+					<StyledInput value={newTodoValue} onChange={handleChangeInput} type='text' />
+					<StyledButton onClick={handleAddTodo}>Add</StyledButton>
+				</Flex>
+
+				{todos.map(item => (
+					<StyledTodo key={item.id}>
+						<input checked={item.completed} type='checkbox' onChange={() => handleToggleTodo(item.id)} />
+						<span>{item.todo}</span>
+						<StyledButton onClick={() => handleDelete(item.id)} size='18px'>
+							Delete
+						</StyledButton>
+					</StyledTodo>
+				))}
+				<button onClick={handleClear}>Clear</button>
+			</StyledTodoList>
+		</>
+	)
 }
 
 // export const TodoList = () => {
