@@ -4,9 +4,9 @@ import { Spinner } from './Spinner'
 import { Posts } from './Posts'
 import { toast } from 'react-toastify'
 import { fetchPosts } from '../../Services/api'
-import { Component, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
-export const PostPreview = () => {
+export const PostPreview = ({ title }) => {
 	const [posts, setPosts] = useState([])
 	const [limit, setLimit] = useState(5)
 	const [skip, setSkip] = useState(0)
@@ -14,22 +14,7 @@ export const PostPreview = () => {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState('')
 	const [query, setQuery] = useState('')
-	const [totalRenderState, setTotalRenderState] = useState(0)
-	const isFirstRender = useRef(true)
-	const totalRender = useRef(0)
 	useEffect(() => {
-		// setTotalRenderState(prev => prev + 1)
-		console.log(`Компонент оновився ${totalRenderState} разів`)
-	}, [totalRenderState])
-
-	useEffect(() => {
-		// Створення функції для запиту
-		// if (isFirstRender.current) {
-		// 	console.log('Відбувся перший рендер, ми його пропускаємо')
-		// 	isFirstRender.current = false
-		// 	return
-		// }
-
 		if (!query) {
 			return
 		}
@@ -66,15 +51,10 @@ export const PostPreview = () => {
 			setSkip(0)
 			setPosts([])
 		}
-		// if (query === this.state.query) {
-		// 	toast.warning('Please change your query!')
-		// } else {
-		// 	this.setState({ query, skip: 0, posts: [] })
-		// }
 	}
 	return (
 		<Container>
-			<SearchForm setQuery={handleChangeQuery} />
+			<SearchForm title={title} setQuery={handleChangeQuery} />
 			{loading && !posts.length ? <Spinner /> : <Posts data={posts} />}
 			<Button disabled={loading} onClick={handleLoadMore}>
 				{loading ? 'Loading...' : 'Load More'}
@@ -83,73 +63,6 @@ export const PostPreview = () => {
 	)
 }
 
-// export class PostPreview extends Component {
-// 	state = {
-// 		posts: [],
-// 		limit: 5,
-// 		skip: 0,
-// 		total: null,
-// 		error: '',
-// 		loading: false,
-// 		query: '',
-// 		buttonIsGone: false,
-// 	}
-
-// 	async componentDidMount() {
-// 		const { limit } = this.state
-// try {
-// 	this.setState({ loading: true })
-// 	const { posts, total } = await fetchPosts({ limit })
-// 	this.setState({ posts, total })
-// } catch (error) {
-// } finally {
-// 	this.setState({ loading: false })
-// }
-// 	}
-
-// 	async componentDidUpdate(prevProps, prevState) {
-// 		const { skip, limit, query } = this.state
-// 		if (prevState.skip !== skip || prevState.query !== query) {
-// 			try {
-// 				this.setState({ loading: true })
-// 				const { posts, total, skip } = await fetchPosts({ limit, skip: this.state.skip, q: query })
-// 				this.setState(prev => ({ skip, posts: [...prev.posts, ...posts], total }))
-// 			} catch (error) {
-// 			} finally {
-// 				this.setState({ loading: false })
-// 			}
-// 		}
-// 		if (this.state.posts.length === this.state.total && this.state.buttonIsGone !== prevState.buttonIsGone) {
-// 			this.setState({ buttonIsGone: true })
-// 		}
-// 	}
-
-// handleLoadMore = () => {
-// 	this.setState(prev => ({ skip: prev.skip + prev.limit }))
-// }
-// handleChangeQuery = query => {
-// 	if (query === this.state.query) {
-// 		toast.warning('Please change your query!')
-// 	} else {
-// 		this.setState({ query, skip: 0, posts: [] })
-// 	}
-// }
-
-// 	render() {
-// 		const { posts, loading, total, skip, buttonIsGone } = this.state
-// return (
-// 	<Container>
-// 		<SearchForm setQuery={this.handleChangeQuery} />
-// 		{loading && !posts.length ? <Spinner /> : <Posts data={posts} />}
-// 		{buttonIsGone || (
-// 			<Button disabled={loading} onClick={this.handleLoadMore}>
-// 				{loading ? 'Loading...' : 'Load More'}
-// 			</Button>
-// 		)}
-// 	</Container>
-// )
-// 	}
-// }
 const Button = styled.button`
 	display: block;
 	margin: 0 auto;

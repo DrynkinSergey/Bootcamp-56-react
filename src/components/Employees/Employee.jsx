@@ -2,7 +2,7 @@ import { EmployeesFilter } from './EmployeesFilter'
 import { EmployeeList } from './EmployeeList'
 import userData from './../../assets/users.json'
 import React from 'react'
-import { getFilteredData } from '../../services/getFileteredData'
+// import { getFilteredData } from '../../services/getFileteredData'
 import { Modal } from '../Modal/Modal'
 
 export class Employee extends React.Component {
@@ -56,11 +56,12 @@ export class Employee extends React.Component {
 	render() {
 		const { searchValue, activeSkill, isAvailable, isModalOpen } = this.state
 		// console.log(this.getFilteredData())
-		const filteredData = getFilteredData(this.state)
+		// const filteredData = getFilteredData(this.state)
 		return (
 			<>
 				<EmployeesFilter
 					toggleModal={this.toggleModal}
+					title={this.props.title}
 					isAvailable={isAvailable}
 					activeSkill={activeSkill}
 					searchValue={searchValue}
@@ -68,7 +69,7 @@ export class Employee extends React.Component {
 					onChangeAvailable={this.handleChangeIsAvailable}
 					onChangeSearchValue={this.handleChangeSearchValue}
 				/>
-				<EmployeeList users={filteredData} onDeleteUser={this.handleDeleteUser} />
+				<EmployeeList users={[]} onDeleteUser={this.handleDeleteUser} />
 				{isModalOpen && (
 					<Modal onClose={this.toggleModal}>
 						<h1>Продам холодильник</h1>

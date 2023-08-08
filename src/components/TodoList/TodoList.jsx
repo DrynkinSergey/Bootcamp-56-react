@@ -3,7 +3,8 @@ import { StyledButton } from '../Counter/Counter.styled'
 import { StyledInput, StyledTodo, StyledTodoList } from './TodoList.styled'
 import todoData from './../../assets/todos.json'
 import { Flex } from '../../styles/GlobalStyles'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { MyContext } from '../../context/MyContext'
 
 export const TodoList = () => {
 	// state = {
@@ -13,7 +14,7 @@ export const TodoList = () => {
 	const myRef = useRef()
 	const [todos, setTodos] = useState(todoData)
 	const [newTodoValue, setNewTodoValue] = useState('')
-
+	const { todoValue } = useContext(MyContext)
 	useEffect(() => {
 		myRef.current.focus()
 
@@ -86,7 +87,6 @@ export const TodoList = () => {
 					<StyledInput ref={myRef} value={newTodoValue} onChange={handleChangeInput} type='text' />
 					<StyledButton onClick={handleAddTodo}>Add</StyledButton>
 				</Flex>
-
 				{todos.map(item => (
 					<StyledTodo key={item.id}>
 						<input checked={item.completed} type='checkbox' onChange={() => handleToggleTodo(item.id)} />

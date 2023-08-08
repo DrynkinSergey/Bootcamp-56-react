@@ -1,5 +1,9 @@
-import { Component, useEffect, useRef } from 'react'
+import { Component, useCallback, useEffect, useRef } from 'react'
 import { CloseButton, ModalContent, ModalWrapper } from './Modal.styled'
+import ReactDOM from 'react-dom'
+
+const modalRoot = document.querySelector('#modal')
+// console.log(modalRoot)
 
 export const Modal = ({ children, onClose }) => {
 	const myInterval = useRef(null)
@@ -13,14 +17,16 @@ export const Modal = ({ children, onClose }) => {
 		}
 	}
 
-	useEffect(() => {
-		const handleKeyDown = e => {
+	const handleKeyDown = useCallback(
+		e => {
 			console.log(e.key)
-
 			if (e.key === 'Escape') {
 				onClose()
 			}
-		}
+		},
+		[onClose]
+	)
+	useEffect(() => {
 		console.log(myInterval)
 		document.addEventListener('keydown', handleKeyDown)
 		myInterval.current = setInterval(() => {
@@ -37,9 +43,9 @@ export const Modal = ({ children, onClose }) => {
 
 			clearInterval(myInterval.current)
 		}
-	}, [onClose])
+	}, [onClose, handleKeyDown])
 
-	return (
+	return ReactDOM.createPortal(
 		<ModalWrapper onClick={onBackdropClick}>
 			<ModalContent>
 				<>
@@ -49,7 +55,8 @@ export const Modal = ({ children, onClose }) => {
 				<CloseButton onClick={onClose}>×</CloseButton>
 				{children}
 			</ModalContent>
-		</ModalWrapper>
+		</ModalWrapper>,
+		modalRoot
 	)
 }
 

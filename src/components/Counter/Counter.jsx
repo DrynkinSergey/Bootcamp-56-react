@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Flex, FlexContainer, StyledButton, StyledCounter } from './Counter.styled'
+import { Modal } from '../Modal/Modal'
 
 export const Counter = () => {
 	const [counter, setCounter] = useState(0)
 	const [step, setStep] = useState(1)
+	const [calcValue, setCalcValue] = useState(1)
+	const [isOpen, setIsOpen] = useState(false)
 
-	// Функція виконається один раз при монтуванні
-	useEffect(() => {
-		console.log('Counter is mount')
-	}, [])
+	const toggleModal = () => {
+		setIsOpen(prev => !prev)
+	}
 
-	useEffect(() => {
-		if (!counter) {
-			return
-		}
-		console.log('Counter was updated')
-		if (counter === 5) {
-			console.log('Hello')
-		}
-	}, [counter])
+	const calculateSmth = value => {
+		for (let i = 1; i < 1000000000; i++) {}
+		console.log('calc')
+		return value * 2
+	}
 
-	useEffect(() => {
-		console.log('Step or counter was updated')
-	}, [step, counter])
+	const myResult = useMemo(() => {
+		return calculateSmth(calcValue)
+	}, [calcValue])
+	// console.log(myResult)
+	// const myResult = calculateSmth(calcValue)
 
 	const handleIncrement = () => {
 		setCounter(prev => prev + step)
@@ -42,6 +42,8 @@ export const Counter = () => {
 	return (
 		<FlexContainer>
 			<StyledCounter>
+				<button onClick={toggleModal}>Open modal</button>
+				<h1 onClick={() => setCalcValue(prev => prev + 1)}>Res: {myResult}</h1>
 				<input placeholder='change step' value={step} onChange={handleChangeStep} />
 				<h2 style={{ color: 'white', fontSize: '3rem' }}>{counter}</h2>
 				<Flex>
@@ -49,6 +51,7 @@ export const Counter = () => {
 					<StyledButton onClick={handleReset}>reset</StyledButton>
 					<StyledButton onClick={handleIncrement}>plus</StyledButton>
 				</Flex>
+				{isOpen && <Modal onClose={toggleModal} />}
 			</StyledCounter>
 		</FlexContainer>
 	)

@@ -7,6 +7,7 @@ const skilsList = ['all', 'react', 'angular', 'vue']
 
 export const EmployeesFilter = ({
 	searchValue,
+	title,
 	toggleModal,
 	activeSkill,
 	isAvailable,
@@ -17,6 +18,7 @@ export const EmployeesFilter = ({
 	return (
 		<Filters>
 			<h1>Filters</h1>
+			<h2>{title}</h2>
 			<button onClick={toggleModal}>Open Modal</button>
 			<Flex $height='100px' $items='center'>
 				<StyledInput type='text' value={searchValue} onChange={e => onChangeSearchValue(e.target.value)} />
