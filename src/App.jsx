@@ -10,10 +10,10 @@ import { Employee } from './components/Employees/Employee'
 export const App = ({ title }) => {
 	return (
 		<div>
-			<Counter />
+			{/* <Counter /> */}
 			{/* <ColorPicker /> */}
 
-			{/* <PostPreview title={title} /> */}
+			<PostPreview />
 			{/* <TodoList /> */}
 			{/* <RegisterForm /> */}
 		</div>

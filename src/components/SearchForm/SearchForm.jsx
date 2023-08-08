@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { StyledWrapper } from './SearchForm.styled'
 import { MyContext } from '../../context/MyContext'
 
-export const SearchForm = ({ setQuery, title }) => {
+export const SearchForm = ({ setQuery }) => {
 	// FORM HANDLER
 	const onSubmit = e => {
 		e.preventDefault()
@@ -15,7 +15,6 @@ export const SearchForm = ({ setQuery, title }) => {
 	return (
 		<StyledWrapper onSubmit={onSubmit}>
 			<h2>{user.username}</h2>
-			<h2>{title}</h2>
 			<input autoComplete='off' autoFocus='on' type='text' name='query' />
 			<button>Search</button>
 		</StyledWrapper>

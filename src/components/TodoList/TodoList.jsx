@@ -3,18 +3,13 @@ import { StyledButton } from '../Counter/Counter.styled'
 import { StyledInput, StyledTodo, StyledTodoList } from './TodoList.styled'
 import todoData from './../../assets/todos.json'
 import { Flex } from '../../styles/GlobalStyles'
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { MyContext } from '../../context/MyContext'
+import React, { useContext, useEffect, useReducer, useRef, useState } from 'react'
+import { initialState, todoReducer } from './reducer'
 
 export const TodoList = () => {
-	// state = {
-	// 	todos,
-	// 	newTodoValue: '',
-	// }
 	const myRef = useRef()
-	const [todos, setTodos] = useState(todoData)
-	const [newTodoValue, setNewTodoValue] = useState('')
-	const { todoValue } = useContext(MyContext)
+	const [state, dispatch] = useReducer(todoReducer, initialState)
+	const { todos, newTodoValue } = state
 	useEffect(() => {
 		myRef.current.focus()
 
@@ -22,62 +17,32 @@ export const TodoList = () => {
 		console.log(myRef.current.value)
 	}, [])
 
-	const handleAddTodo = () => {
-		setTodos(prev => [...prev, { id: nanoid(), todo: newTodoValue, completed: false }])
-		setNewTodoValue('')
-		// //
-		// this.setState(prev => ({
-		// 	todos: [...prev.todos, { id: nanoid(), todo: prev.newTodoValue, completed: false }],
-		// 	newTodoValue: '',
-		// }))
-		myRef.current.focus()
-	}
-
 	const handleDelete = id => {
 		console.log(id)
-		setTodos(prev => prev.filter(todo => todo.id !== id))
-		// this.setState(prev => ({
-		// 	todos: prev.todos.filter(todo => {
-		// 		return todo.id !== id
-		// 	}),
-		// }))
+		// setTodos(prev => prev.filter(todo => todo.id !== id))
+		dispatch({ type: 'DELETE_TODO', payload: id })
 	}
 	const handleChangeInput = e => {
-		setNewTodoValue(e.target.value)
-		// this.setState({ newTodoValue: e.target.value })
+		// setNewTodoValue(e.target.value)
+		dispatch({ type: 'CHANGE_INPUT', payload: e.target.value })
 	}
 
 	const handleToggleTodo = id => {
-		setTodos(prev =>
-			prev.map(todo =>
-				todo.id === id
-					? {
-							...todo,
-							completed: !todo.completed,
-					  }
-					: todo
-			)
-		)
-
-		// this.setState(prev => ({
-		// 	todos: prev.todos.map(todo => {
-		// 		if (todo.id === id) {
-		// 			return {
-		// 				...todo,
-		// 				completed: !todo.completed,
-		// 			}
-		// 		} else {
-		// 			return todo
-		// 		}
-		// 	}),
-		// }))
+		// setTodos(prev =>
+		// 	prev.map(todo =>
+		// 		todo.id === id
+		// 			? {
+		// 					...todo,
+		// 					completed: !todo.completed,
+		// 			  }
+		// 			: todo
+		// 	)
+		// )
+		dispatch({ type: 'TOGGLE_TODO', payload: id })
 	}
-
 	const handleClear = () => {
-		setTodos([])
+		// setTodos([])
 		myRef.current.focus()
-
-		// this.setState({ todos: [] })
 	}
 
 	return (
@@ -85,7 +50,7 @@ export const TodoList = () => {
 			<StyledTodoList>
 				<Flex $height='auto'>
 					<StyledInput ref={myRef} value={newTodoValue} onChange={handleChangeInput} type='text' />
-					<StyledButton onClick={handleAddTodo}>Add</StyledButton>
+					<StyledButton onClick={() => dispatch({ type: 'ADD_TODO', payload: newTodoValue })}>Add</StyledButton>
 				</Flex>
 				{todos.map(item => (
 					<StyledTodo key={item.id}>
