@@ -4,8 +4,9 @@ import { Spinner } from './Spinner'
 import { Posts } from './Posts'
 import { toast } from 'react-toastify'
 import { fetchPosts } from '../../Services/api'
-import { useContext, useEffect, useReducer, useState } from 'react'
+import { useContext, useEffect, useReducer, useRef, useState } from 'react'
 import { initialState, postReducer } from './reducer/reducer'
+import { MyContext } from '../../context/MyContext'
 
 export const PostPreview = () => {
 	// const [posts, setPosts] = useState([])
@@ -15,10 +16,15 @@ export const PostPreview = () => {
 	// const [loading, setLoading] = useState(false)
 	// const [error, setError] = useState('')
 	// const [query, setQuery] = useState('')
+
+	const myRef = useRef()
 	const [state, dispatch] = useReducer(postReducer, initialState)
 	const { posts, limit, skip, setTotalItems, loading, error, query } = state
-
+	const value = useContext(MyContext)
 	useEffect(() => {
+		// setTimeout(() => {
+		// 	myRef.current.click()
+		// }, 2000)
 		if (!query) {
 			return
 		}
@@ -66,6 +72,9 @@ export const PostPreview = () => {
 	}
 	return (
 		<Container>
+			<button onClick={() => alert('whats up!')} ref={myRef}>
+				Click
+			</button>
 			<SearchForm setQuery={handleChangeQuery} />
 			{loading && !posts.length ? <Spinner /> : <Posts data={posts} />}
 			<Button disabled={loading} onClick={handleLoadMore}>
