@@ -1,16 +1,12 @@
-import axios from 'axios'
-import React, { createContext, useEffect, useState } from 'react'
-import { fetchUsers } from '../../Services/api'
+import { nanoid } from 'nanoid'
+import React, { createContext, useState } from 'react'
 // Створюємо пустий контекст
-export const MyContext = createContext()
+export const MyContext1 = createContext()
 
 // Створюємо компонент - обгортку, котра буде давати контекст чілдренам
 export const ContextProvider = ({ children }) => {
-	useEffect(() => {
-		fetchUsers().then(res => setTodos(res.users))
-	}, [])
-
 	// Створюємо стейт для юзера, котрий буде доступний всюди
+
 	const [user, setUser] = useState('')
 	const [todos, setTodos] = useState([])
 
@@ -20,6 +16,15 @@ export const ContextProvider = ({ children }) => {
 	// Вихід юзера з системи
 	const logout = () => setUser('')
 
+	const add = todo => setTodos(prev => [...prev, { id: nanoid(), title: todo, completed: false }])
+
+	const remove = id => setTodos(prev => prev.filter(todo => todo.id !== id))
+
+	const toggle = id =>
+		setTodos(prev => prev.map(item => (item.id === id ? { ...item, completed: !item.completed } : item)))
+
+	const removeSelected = () => setTodos(prev => prev.filter(item => !item.completed))
+
 	// Створюємо значення контекста, котре буде доступне всім компонентам
 	const contextValue = {
 		user,
@@ -27,8 +32,14 @@ export const ContextProvider = ({ children }) => {
 		login,
 		logout,
 		todos,
+		todoApi: {
+			add,
+			remove,
+			toggle,
+			removeSelected,
+		},
 	}
 
 	// Робимо обгортку котекст провайдером, передаємо в велью наш об'єкт
-	return <MyContext.Provider value={contextValue}>{children}</MyContext.Provider>
+	return <MyContext1.Provider value={contextValue}>{children}</MyContext1.Provider>
 }
