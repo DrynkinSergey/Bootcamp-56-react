@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { FlexContainer, StyledButton } from '../Counter/Counter.styled'
+import { useMemo, useState } from 'react'
 import { StyledInput, StyledLabel, StyledLoginForm, StyledTitle } from './RegisterForm.styled'
 const INITIAL_STATE = {
 	name: '',
@@ -11,6 +10,12 @@ export const RegisterForm = () => {
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+
+	// const calc = () => {
+	// 	for (let i = 1; i < 1000000000; i++) {}
+	// 	console.log('calc')
+	// }
+	// const res = useMemo(() => calc(), [password])
 
 	const handleSubmit = e => {
 		e.preventDefault()
@@ -36,7 +41,7 @@ export const RegisterForm = () => {
 		}
 	}
 	return (
-		<FlexContainer>
+		<div>
 			<StyledLoginForm onSubmit={handleSubmit}>
 				<StyledTitle>Register</StyledTitle>
 				<StyledLabel>
@@ -56,8 +61,8 @@ export const RegisterForm = () => {
 				</StyledLabel>
 
 				<br />
-				<StyledButton>Register</StyledButton>
+				<button>Register</button>
 			</StyledLoginForm>
-		</FlexContainer>
+		</div>
 	)
 }
