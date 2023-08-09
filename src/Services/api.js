@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { normalizeData } from '../helpers/normalizeData'
 // 'https://dummyjson.com/posts/search'
 
 axios.defaults.baseURL = 'https://dummyjson.com'

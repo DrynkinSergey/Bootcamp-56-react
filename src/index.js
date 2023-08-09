@@ -3,19 +3,13 @@ import { App } from './App'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import ReactDOM from 'react-dom/client'
-import { ThemeProvider } from 'styled-components'
-import { theme } from './styles/theme'
 import { GlobalStyles } from './styles/GlobalStyles'
-
-import { ContextProvider } from './store/context/ContextProvider'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-	<ContextProvider>
-		<ThemeProvider theme={theme}>
-			<App title='Hello optimization' />
-			<GlobalStyles />
-			<ToastContainer autoClose={1000} />
-		</ThemeProvider>
-	</ContextProvider>
+	<>
+		<App title='Hello optimization' />
+		<GlobalStyles />
+		<ToastContainer autoClose={1000} />
+	</>
 )
