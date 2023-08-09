@@ -3,6 +3,7 @@ import { Modal } from './components/Modal/Modal'
 import { RegisterForm } from './components/RegisterForm/RegisterForm'
 import { fetchUsers } from './Services/api'
 import { MyContext } from './store/context/ContextProvider'
+import { HomePage } from './components/HomePage/HomePage'
 
 export const App = () => {
 	const isFirstRender = useRef(true)
@@ -34,15 +35,5 @@ export const App = () => {
 	// 	// Ця частина коду виконається тільки починаючи з другого рендера
 	// 	console.log('Другий і наступні відмальовки')
 	// }, [value])
-	return (
-		<>
-			{isLoggedIn ? <h1>Online</h1> : <h1>Offline</h1>}
-			<input type='text' value={userName} onChange={e => setUserName(e.target.value)} />
-			{!isLoggedIn ? (
-				<button onClick={() => login(userName)}>login</button>
-			) : (
-				<button onClick={() => logout()}>Exit</button>
-			)}
-		</>
-	)
+	return <>{!isLoggedIn ? <RegisterForm /> : <HomePage />}</>
 }

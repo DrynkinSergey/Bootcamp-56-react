@@ -1,11 +1,18 @@
-import React, { createContext, useState } from 'react'
+import axios from 'axios'
+import React, { createContext, useEffect, useState } from 'react'
+import { fetchUsers } from '../../Services/api'
 // Створюємо пустий контекст
 export const MyContext = createContext()
 
 // Створюємо компонент - обгортку, котра буде давати контекст чілдренам
 export const ContextProvider = ({ children }) => {
+	useEffect(() => {
+		fetchUsers().then(res => setTodos(res.users))
+	}, [])
+
 	// Створюємо стейт для юзера, котрий буде доступний всюди
 	const [user, setUser] = useState('')
+	const [todos, setTodos] = useState([])
 
 	// Створюємо функцію логінізації юзера
 	const login = userName => setUser(userName)
@@ -19,6 +26,7 @@ export const ContextProvider = ({ children }) => {
 		isLoggedIn: Boolean(user),
 		login,
 		logout,
+		todos,
 	}
 
 	// Робимо обгортку котекст провайдером, передаємо в велью наш об'єкт

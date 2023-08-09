@@ -1,5 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useContext, useMemo, useState } from 'react'
 import { StyledInput, StyledLabel, StyledLoginForm, StyledTitle } from './RegisterForm.styled'
+import { MyContext } from '../../store/context/ContextProvider'
+import { styled } from 'styled-components'
 const INITIAL_STATE = {
 	name: '',
 	password: '',
@@ -8,9 +10,10 @@ const INITIAL_STATE = {
 
 export const RegisterForm = () => {
 	const [name, setName] = useState('')
-
+	const { login } = useContext(MyContext)
 	const handleSubmit = e => {
 		e.preventDefault()
+		login(name)
 	}
 
 	const handleChangeInput = ({ target }) => {
@@ -21,9 +24,9 @@ export const RegisterForm = () => {
 		setName(value)
 	}
 	return (
-		<div>
+		<Flex>
 			<StyledLoginForm onSubmit={handleSubmit}>
-				<StyledTitle>Register</StyledTitle>
+				<StyledTitle>Login</StyledTitle>
 				<StyledLabel>
 					Name:
 					<StyledInput onChange={handleChangeInput} type='text' name='name' value={name} />
@@ -31,6 +34,13 @@ export const RegisterForm = () => {
 				<br />
 				<button>Login</button>
 			</StyledLoginForm>
-		</div>
+		</Flex>
 	)
 }
+
+const Flex = styled.div`
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`
