@@ -1,7 +1,7 @@
-import { useContext, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { StyledInput, StyledLabel, StyledLoginForm, StyledTitle } from './RegisterForm.styled'
-import { MyContext } from '../../store/context/ContextProvider'
 import { styled } from 'styled-components'
+import { useMyContext } from '../../hooks/useMyContext'
 const INITIAL_STATE = {
 	name: '',
 	password: '',
@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 
 export const RegisterForm = () => {
 	const [name, setName] = useState('')
-	const { login } = useContext(MyContext)
+	const { login } = useMyContext()
 	const handleSubmit = e => {
 		e.preventDefault()
 		login(name)

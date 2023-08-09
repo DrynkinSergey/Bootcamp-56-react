@@ -1,25 +1,12 @@
-import { useContext, useEffect, useRef, useState } from 'react'
-import { Modal } from './components/Modal/Modal'
+import { useEffect, useRef, useState } from 'react'
 import { RegisterForm } from './components/RegisterForm/RegisterForm'
-import { fetchUsers } from './Services/api'
-import { MyContext } from './store/context/ContextProvider'
 import { HomePage } from './components/HomePage/HomePage'
+import { useMyContext } from './hooks/useMyContext'
 
 export const App = () => {
-	const isFirstRender = useRef(true)
-	const [userName, setUserName] = useState('')
-	const { login, user, isLoggedIn, logout } = useContext(MyContext)
-	const getUsers = async () => {
-		try {
-			const res = await fetchUsers()
-			console.log(res)
-		} catch (error) {}
-	}
-
-	useEffect(() => {
-		getUsers()
-	}, [])
-
+	const { isLoggedIn } = useMyContext()
+	// const fullContextValue = useMyContext()
+	// console.log(fullContextValue)
 	// useEffect(() => {
 	// 	// Пропуск першого рендера
 	// 	if (isFirstRender.current) {

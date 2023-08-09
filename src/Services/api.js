@@ -4,8 +4,8 @@ import { normalizeData } from '../helpers/normalizeData'
 
 axios.defaults.baseURL = 'https://dummyjson.com'
 
-export const fetchUsers = async () => {
+export const fetchTodos = async () => {
 	const { data } = await axios.get('/todos')
-	const users = data.todos
-	return { total: data.total, limit: data.limit, users }
+	const todos = data.todos
+	return { total: data.total, limit: data.limit, todos }
 }

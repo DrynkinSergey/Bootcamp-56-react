@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react'
-import { MyContext } from '../../store/context/ContextProvider'
+import React, { useState } from 'react'
+import { useMyContext } from '../../hooks/useMyContext'
 
 export const AddForm = () => {
 	const [value, setValue] = useState('')
-	const { todoApi } = useContext(MyContext)
+	const { todoApi } = useMyContext()
 	const onSubmit = e => {
 		e.preventDefault()
 		todoApi.add(value)
