@@ -12,7 +12,7 @@ export const SinglePost = () => {
 	return (
 		<div>
 			<button onClick={() => navigate(-1)}>Go back</button>
-			<button onClick={() => navigate('/')}>Go home</button>
+			<button onClick={() => navigate('/users')}>Go home</button>
 			<div>
 				<h1>{post.title}</h1>
 				<h2>{post.body}</h2>
