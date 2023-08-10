@@ -17,11 +17,10 @@ export const UserPosts = () => {
 				<ol>
 					{posts.map(post => (
 						<li>
-							<Link to={`/users/${id}/posts/${post.id}`}>{post.title}</Link>
+							<Link to={`/posts/${post.id}`}>{post.title}</Link>
 						</li>
 					))}
 				</ol>
-				<Outlet />
 			</Flex>
 		</div>
 	)

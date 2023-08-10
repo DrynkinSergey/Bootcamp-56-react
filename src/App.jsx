@@ -25,15 +25,13 @@ export const App = () => {
 						<Route path='mission' element={<OurMission />} />
 						<Route path='company' element={<OurCompany />} />
 					</Route>
-					{/* <Route path='posts/:postId' element={<SinglePost />} /> */}
+					<Route path='posts/:postId' element={<SinglePost />} />
 					<Route path='users' element={<Users />} />
 					<Route path='users/:id' element={<SingleUser />}>
 						<Route index element={<h2>Напис, поки не клікнув на посилання</h2>} />
 						<Route path='bio' element={<Bio />} />
 						<Route path='address' element={<h1>USER ADDRESS</h1>} />
-						<Route path='posts' element={<UserPosts />}>
-							<Route path='/users/:id/posts/:postId' element={<SinglePost />} />
-						</Route>
+						<Route path='posts' element={<UserPosts />} />
 					</Route>
 					<Route path='*' element={<NotFound />} />
 				</Route>
