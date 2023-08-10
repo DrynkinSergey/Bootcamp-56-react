@@ -2,7 +2,13 @@ import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const NavBar = () => {
-	return <SideBar></SideBar>
+	return (
+		<SideBar>
+			<StyledLink to='/'>Home</StyledLink>
+			<StyledLink to='/about'>About</StyledLink>
+			<StyledLink to='/users'>Users</StyledLink>
+		</SideBar>
+	)
 }
 
 const SideBar = styled.nav`
@@ -16,7 +22,7 @@ const SideBar = styled.nav`
 	width: 200px;
 	padding: 40px 20px;
 `
-export const NavItem = styled(NavLink)`
+export const StyledLink = styled(NavLink)`
 	display: flex;
 	align-items: center;
 	gap: 10px;
