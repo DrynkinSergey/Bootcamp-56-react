@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { Home } from './pages/Home'
 import { About } from './pages/About'
@@ -12,6 +12,7 @@ import { OurMission } from './components/AboutNested/OurMission'
 import { OurCompany } from './components/AboutNested/OurCompany'
 import { UserPosts } from './components/UserPosts'
 import { SinglePost } from './pages/SinglePost'
+import { Posts } from './pages/Posts'
 
 export const App = () => {
 	return (
@@ -28,7 +29,10 @@ export const App = () => {
 					</Route>
 
 					<Route path='posts/:postId' element={<SinglePost />} />
+					{/* Redirect коли змінився маршрут */}
+					<Route path='usersList' element={<Navigate to='/users' />} />
 					<Route path='users' element={<Users />} />
+					<Route path='posts' element={<Posts />} />
 
 					<Route path='users/:id' element={<SingleUser />}>
 						<Route index element={<h2>Напис, поки не клікнув на посилання</h2>} />
@@ -38,6 +42,8 @@ export const App = () => {
 					</Route>
 
 					<Route path='*' element={<NotFound />} />
+					{/* Redirect to='/' */}
+					{/* <Route path='*' element={<Navigate to='/' />} /> */}
 				</Route>
 			</Routes>
 		</div>
