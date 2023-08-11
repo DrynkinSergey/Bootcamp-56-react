@@ -1,19 +1,20 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { fetchUsers } from '../Services/api'
+import { useHttp } from '../hooks/useHttp'
 
 export const Users = () => {
-	const [users, setUsers] = useState([])
-	useEffect(() => {
-		axios.get('https://jsonplaceholder.typicode.com/users').then(res => setUsers(res.data))
-	}, [])
+	const [users] = useHttp(fetchUsers)
+	const location = useLocation()
+	console.log(location)
 	return (
 		<div>
 			<h1>Users list</h1>
 			<ol>
 				{users.map(user => (
 					<li key={user.id}>
-						<Link to={`${user.id}`}>{user.name}</Link>
+						<Link state={{ from: location }} to={`${user.id}`}>
+							{user.name}
+						</Link>
 					</li>
 				))}
 			</ol>

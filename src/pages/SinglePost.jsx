@@ -1,14 +1,12 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
+import { useHttp } from '../hooks/useHttp'
+import { fetchPostsById } from '../Services/api'
 
 export const SinglePost = () => {
 	const { postId } = useParams()
 	const navigate = useNavigate()
-	const [post, setPost] = useState({})
-	useEffect(() => {
-		axios.get(`https://jsonplaceholder.typicode.com/posts/${postId}`).then(res => setPost(res.data))
-	}, [postId])
+	const [post] = useHttp(fetchPostsById, postId)
+
 	return (
 		<div>
 			<button onClick={() => navigate(-1)}>Go back</button>

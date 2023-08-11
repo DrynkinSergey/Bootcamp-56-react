@@ -9,8 +9,16 @@ export const fetchTodos = async () => {
 	return { total: data.total, limit: data.limit, todos }
 }
 
+export const fetchPostsById = async id => {
+	const { data } = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+	return data
+}
 export const fetchPosts = async () => {
 	const { data } = await axios.get('/posts')
+	return data
+}
+export const fetchUsers = async () => {
+	const { data } = await axios.get('https://jsonplaceholder.typicode.com/users')
 	return data
 }
 export const fetchPostsByQuery = async query => {

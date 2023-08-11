@@ -16,7 +16,7 @@ export const UserPosts = () => {
 			<Flex>
 				<ol>
 					{posts.map(post => (
-						<li>
+						<li key={post.id}>
 							<Link to={`/posts/${post.id}`}>{post.title}</Link>
 						</li>
 					))}

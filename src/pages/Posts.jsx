@@ -1,28 +1,24 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { fetchPosts, fetchPostsByQuery } from '../Services/api'
-import { useSearchParams } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router-dom'
 
 export const Posts = () => {
+	const location = useLocation()
+	console.log(location)
 	const [posts, setPosts] = useState([])
 	const [searchParams, setSearchParams] = useSearchParams()
-	const query = searchParams.get('query')
-	const page = searchParams.get('page')
-	const limit = searchParams.get('limit')
-
+	const query = searchParams.get('query') ?? ''
 	const [value, setValue] = useState(query)
-	// console.log({ limit, page, query })
 	useEffect(() => {
 		if (query) {
 			fetchPostsByQuery(query).then(res => setPosts(res.posts))
 		} else fetchPosts().then(res => setPosts(res.posts))
 	}, [query])
-	useEffect(() => {
-		console.log(query)
-	}, [query])
+
 	const onsubmit = e => {
 		e.preventDefault()
-		setSearchParams(value ? { query: value, page: 1, limit: 12 } : {})
+		setSearchParams(value ? { query: value } : {})
 	}
 	return (
 		<div>
@@ -31,6 +27,7 @@ export const Posts = () => {
 				<input value={value} onChange={e => setValue(e.target.value)} type='text' placeholder='Enter your query...' />
 				<button>Search 🔥</button>
 			</form>
+
 			{/* <form onSubmit={onsubmit}>
 				<input
 					value={query}

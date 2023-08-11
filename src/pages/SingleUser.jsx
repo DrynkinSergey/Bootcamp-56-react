@@ -1,18 +1,23 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Outlet, useParams } from 'react-router'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 import { StyledLink } from '../components/Navbar'
 
 export const SingleUser = () => {
 	const { id } = useParams()
+
+	const location = useLocation()
+	console.log(location)
 	const [user, setUser] = useState({})
 	useEffect(() => {
 		axios.get(`https://jsonplaceholder.typicode.com/users/${id}`).then(res => setUser(res.data))
 	}, [id])
 	return (
 		<>
+			<Link to={location.state?.from || '/'}>Go back</Link>
+			{/* <Link to='/users'>Go back</Link> */}
 			<h1>SingleUser #{id}</h1>
 			<h2>Name: {user.name}</h2>
 			<h2>Email: {user.email}</h2>
