@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { fetchUsers } from '../Services/api'
 import { useHttp } from '../hooks/useHttp'
 
-export const Users = () => {
+const Users = () => {
 	const [users] = useHttp(fetchUsers)
 	const location = useLocation()
 	console.log(location)
@@ -21,3 +21,4 @@ export const Users = () => {
 		</div>
 	)
 }
+export default Users

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const OurCompany = () => {
+const OurCompany = () => {
 	return (
 		<div>
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores ea natus quae dicta maiores optio porro nihil
@@ -14,3 +14,4 @@ export const OurCompany = () => {
 		</div>
 	)
 }
+export default OurCompany

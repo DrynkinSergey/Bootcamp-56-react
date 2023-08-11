@@ -1,19 +1,27 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import { Route, Routes } from 'react-router'
 import { Link, Navigate } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { Home } from './pages/Home'
-import { About } from './pages/About'
-import { NotFound } from './pages/NotFound'
-import { Users } from './pages/Users'
-import { SingleUser } from './pages/SingleUser'
-import { Bio } from './components/Bio'
+// import About from './pages/About'
+// import { NotFound } from './pages/NotFound'
+// import { Users } from './pages/Users'
+// import SingleUser  from './pages/SingleUser'
+// import { Bio } from './components/Bio'
 import { OurMission } from './components/AboutNested/OurMission'
-import { OurCompany } from './components/AboutNested/OurCompany'
+// import { OurCompany } from './components/AboutNested/OurCompany'
 import { UserPosts } from './components/UserPosts'
 import { SinglePost } from './pages/SinglePost'
 import { Posts } from './pages/Posts'
+import { LoginForm } from './components/RegisterForm/LoginForm'
+import { PrivateRoute } from './routes/PrivateRoute'
 
+const About = lazy(() => import('./pages/About'))
+const Users = lazy(() => import('./pages/Users'))
+const NotFound = lazy(() => import('./pages/NotFound'))
+const SingleUser = lazy(() => import('./pages/SingleUser'))
+const Bio = lazy(() => import('./components/Bio'))
+const OurCompany = lazy(() => import('./components/AboutNested/OurCompany'))
 export const App = () => {
 	return (
 		<div>
@@ -21,6 +29,7 @@ export const App = () => {
 			<Routes>
 				<Route path='/' element={<Layout />}>
 					<Route index element={<Home />} />
+					<Route path='login' element={<LoginForm />} />
 
 					<Route path='about' element={<About />}>
 						<Route index element={<h1>Welcome to about page!</h1>} />
@@ -38,7 +47,14 @@ export const App = () => {
 						<Route index element={<h2>Напис, поки не клікнув на посилання</h2>} />
 						<Route path='bio' element={<Bio />} />
 						<Route path='address' element={<h1>USER ADDRESS</h1>} />
-						<Route path='posts' element={<UserPosts />} />
+						<Route
+							path='posts'
+							element={
+								<PrivateRoute>
+									<UserPosts />
+								</PrivateRoute>
+							}
+						/>
 					</Route>
 
 					<Route path='*' element={<NotFound />} />

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Bio = () => {
+const Bio = () => {
 	return (
 		<div>
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quo, repudiandae placeat neque id obcaecati hic
@@ -8,3 +8,4 @@ export const Bio = () => {
 		</div>
 	)
 }
+export default Bio

@@ -1,13 +1,18 @@
+import { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+import { AuthContext } from '../context/ContextProvider'
 
 export const NavBar = () => {
+	const { user, logout } = useContext(AuthContext)
 	return (
 		<SideBar>
+			<h1>{user}</h1>
 			<StyledLink to='/'>Home</StyledLink>
 			<StyledLink to='/about'>About</StyledLink>
 			<StyledLink to='/users'>Users</StyledLink>
 			<StyledLink to='/posts'>Posts</StyledLink>
+			{user && <button onClick={logout}>Exit</button>}
 		</SideBar>
 	)
 }

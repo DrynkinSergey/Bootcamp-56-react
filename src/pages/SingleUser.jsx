@@ -1,11 +1,11 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { Outlet, useParams } from 'react-router'
 import { Link, useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 import { StyledLink } from '../components/Navbar'
 
-export const SingleUser = () => {
+const SingleUser = () => {
 	const { id } = useParams()
 
 	const location = useLocation()
@@ -33,7 +33,9 @@ export const SingleUser = () => {
 				<StyledLink to='posts'>Show user posts</StyledLink>
 			</Flex>
 			<hr />
-			<Outlet />
+			<Suspense fallback={<h1>Loading nested routes</h1>}>
+				<Outlet />
+			</Suspense>
 		</>
 	)
 }
@@ -41,3 +43,4 @@ export const Flex = styled.div`
 	display: flex;
 	gap: 20px;
 `
+export default SingleUser
