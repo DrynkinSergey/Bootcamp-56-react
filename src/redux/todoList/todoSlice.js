@@ -1,6 +1,25 @@
 // Імпортуємо функцію для створення слайса а також нано айді
 import { createSlice, nanoid } from '@reduxjs/toolkit'
 
+// ------------------ Необов'язково -----------------//
+//
+// Створення хелпера(функції) для prepare якщо займає багато місця,
+// передається замість значення у prepare
+//
+// const addTodoPrepare = title => {
+// 	return {
+// 		payload: {
+// 			title,
+// 			id: nanoid(),
+// 			completed: false,
+// 			createdAt: new Date().toLocaleTimeString(),
+// 			checked: false,
+// 			updated: true,
+// 		},
+// 	}
+// }
+// ------------------ ---------------- -----------------//
+
 // Створюємо початковий стан для слайса
 const initialState = {
 	todos: [],
@@ -33,16 +52,20 @@ export const todoSlice = createSlice({
 		// Створюємо редьюсер, котрий буде складатись з prepare (зміненого payload'a)
 		// Та самого редьюсера (функції)
 		// 1. Відкриваємо об'єкт
+
 		addTodo: {
 			// 2. Пишемо prepare (зарезервоване слово): в значення (title) приходить пейлод з компонента - текст нової задачі
 			prepare: title => {
 				// Повертаємо новий доповнений payload
 				return {
-					// Розширюємо пейлоад будьякими данними
+					// Розширюємо пейлоад будь-якими данними
 					payload: {
 						title,
 						id: nanoid(),
 						completed: false,
+						createdAt: new Date().toLocaleTimeString(),
+						checked: false,
+						updated: true,
 					},
 				}
 			},
