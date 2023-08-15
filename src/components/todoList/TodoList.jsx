@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTodo, deleteTodo, toggleTodo } from '../../redux/todoList/actions'
+
 import { FIlter } from './FIlter'
 import { selectFilter, selectFilteredData } from '../../redux/todoList/selectors'
+import { addTodo, deleteTodo, toggleTodo } from '../../redux/todoList/todoSlice'
 
 export const TodoList = () => {
 	const [newTodoValue, setNewTodoValue] = useState('')

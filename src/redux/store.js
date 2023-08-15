@@ -1,16 +1,20 @@
-import { combineReducers, createStore } from 'redux'
-import { counterReducer } from './counter/reducer'
+// Імпортуємо редьюсери
+import { counterReducer } from './counter/counterSlice'
 
-import { devToolsEnhancer } from '@redux-devtools/extension'
-import { todoReducer } from './todoList/reducer'
+// Імпортуємо функцію  створення стору
+import { configureStore } from '@reduxjs/toolkit'
+import { todoReducer } from './todoList/todoSlice'
 
-const rootReducer = combineReducers({
-	counter: counterReducer,
-	todoList: todoReducer,
+// Створюємо стор, та експортуємо його для використання в index.js
+export const store = configureStore({
+	// Додаємо редьюсери, якщо їх декілька
+	reducer: {
+		counter: counterReducer,
+		todoList: todoReducer,
+	},
 })
 
-const devTools = devToolsEnhancer()
-
-export const store = createStore(rootReducer, devTools)
-
-// RTK - Redux ToolKit
+// Якщо один редьюсер
+// export const store = configureStore({
+// 	reducer: counterReducer,
+// })

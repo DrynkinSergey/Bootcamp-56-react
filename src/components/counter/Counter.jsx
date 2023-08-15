@@ -1,9 +1,12 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
-import { increment, decrement, reset, incByValue } from '../../redux/counter/actions'
+import { decrement, increment, incrementByValue, reset } from '../../redux/counter/counterSlice'
 export const Counter = () => {
+	// Вискористовуємо useSelector, щоб отримати данні з редакса
 	const { counter } = useSelector(state => state.counter)
+
+	// Використовуємо useDispatch, щоб отримати функцію для керування редаксом
 	const dispatch = useDispatch()
 
 	const inc = () => {
@@ -13,7 +16,7 @@ export const Counter = () => {
 		dispatch(reset())
 	}
 	const incrementBy10 = () => {
-		dispatch(incByValue(11))
+		dispatch(incrementByValue(11))
 	}
 
 	return (

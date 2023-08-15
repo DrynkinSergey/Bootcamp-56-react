@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { setFilter } from '../../redux/todoList/actions'
+import { setFilter } from '../../redux/todoList/todoSlice'
 
 export const FIlter = () => {
 	const dispatch = useDispatch()

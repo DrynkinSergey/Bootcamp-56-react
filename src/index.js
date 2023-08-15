@@ -9,6 +9,8 @@ import { store } from './redux/store'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
+	// Огортаємо Провайдером , передаємо пропс store для того,щоб працював редакс
+	// Імпорт store йде з файлу стор в редаксі
 	<Provider store={store}>
 		<App />
 		<GlobalStyles />
