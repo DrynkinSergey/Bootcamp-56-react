@@ -12,7 +12,9 @@ export const store = configureStore({
 		counter: counterReducer,
 		todoList: todoReducer,
 	},
+	devTools: process.env.NODE_ENV !== 'production',
 })
+console.log(process.env)
 
 // Якщо один редьюсер
 // export const store = configureStore({
