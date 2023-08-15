@@ -1,19 +1,19 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
-
+import { increment, decrement, reset, incByValue } from '../../redux/counter/actions'
 export const Counter = () => {
 	const { counter } = useSelector(state => state.counter)
 	const dispatch = useDispatch()
 
-	const increment = () => {
-		dispatch({ type: 'INC' })
+	const inc = () => {
+		dispatch(increment())
 	}
-	const reset = () => {
-		dispatch({ type: 'RESET' })
+	const resetValue = () => {
+		dispatch(reset())
 	}
 	const incrementBy10 = () => {
-		dispatch({ type: 'INC_BY_10', payload: 10 })
+		dispatch(incByValue(11))
 	}
 
 	return (
@@ -21,9 +21,9 @@ export const Counter = () => {
 			<h1>Counter Redux</h1>
 			<h2>{counter}</h2>
 			<div>
-				<button onClick={() => dispatch({ type: 'DEC' })}>Minus</button>
-				<button onClick={reset}>Reset</button>
-				<button onClick={increment}>Plus</button>
+				<button onClick={() => dispatch(decrement())}>Minus</button>
+				<button onClick={resetValue}>Reset</button>
+				<button onClick={inc}>Plus</button>
 				<button onClick={incrementBy10}>Plus 10</button>
 			</div>
 		</Flex>

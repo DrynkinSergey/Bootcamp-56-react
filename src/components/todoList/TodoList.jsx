@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTodo, deleteTodo, toggle } from '../../redux/todoList/actions'
+import { addTodo, deleteTodo, toggleTodo } from '../../redux/todoList/actions'
 import { FIlter } from './FIlter'
 import { selectFilter, selectFilteredData } from '../../redux/todoList/selectors'
 
@@ -20,25 +20,11 @@ export const TodoList = () => {
 	const removeTodo = id => {
 		//actionCreator
 		dispatch(deleteTodo(id))
-		// dispatch({
-		// 	type: DELETE_TODO,
-		// 	payload: id,
-		// })
 	}
-	const toggleTodo = id => {
-		dispatch(toggle(id))
+	const toggle = id => {
+		dispatch(toggleTodo(id))
 	}
-	// const getFilteredData = () => {
-	// 	switch (filter) {
-	// 		case 'active':
-	// 			return todos.filter(item => !item.completed)
-	// 		case 'completed':
-	// 			return todos.filter(item => item.completed)
-	// 		default:
-	// 			return todos
-	// 	}
-	// }
-	// const filteredData = getFilteredData()
+
 	return (
 		<div>
 			<h1>НАШ ФІЛЬТЕР : {filter}</h1>
@@ -58,7 +44,7 @@ export const TodoList = () => {
 			<ul>
 				{filteredData.map(todo => (
 					<li key={todo.id}>
-						<input type='checkbox' onChange={() => toggleTodo(todo.id)} checked={todo.completed} />
+						<input type='checkbox' onChange={() => toggle(todo.id)} checked={todo.completed} />
 						{todo.title} <button onClick={() => removeTodo(todo.id)}>Delete</button>
 					</li>
 				))}
