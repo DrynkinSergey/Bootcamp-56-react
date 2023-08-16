@@ -5,6 +5,7 @@ const postsSlice = createSlice({
 	initialState: {
 		posts: [],
 		loading: false,
+		filter: '',
 	},
 	reducers: {
 		fetchPosts: (state, { payload }) => {
@@ -13,8 +14,11 @@ const postsSlice = createSlice({
 		setLoading: (state, { payload }) => {
 			state.loading = payload
 		},
+		setFilter: (state, { payload }) => {
+			state.filter = payload
+		},
 	},
 })
 
-export const { fetchPosts, setLoading } = postsSlice.actions
+export const { fetchPosts, setLoading, setFilter } = postsSlice.actions
 export const postsReducer = postsSlice.reducer
