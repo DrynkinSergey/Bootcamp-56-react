@@ -17,8 +17,14 @@ const postsSlice = createSlice({
 		setFilter: (state, { payload }) => {
 			state.filter = payload
 		},
+		deletePost: (state, { payload }) => {
+			state.posts = state.posts.filter(post => post.id !== payload)
+		},
+		addPost: (state, { payload }) => {
+			state.posts.unshift(payload)
+		},
 	},
 })
 
-export const { fetchPosts, setLoading, setFilter } = postsSlice.actions
+export const { deletePost, fetchPosts, setLoading, setFilter, addPost } = postsSlice.actions
 export const postsReducer = postsSlice.reducer

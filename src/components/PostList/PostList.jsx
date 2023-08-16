@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { PostItem } from './PostItem'
 import { Filter } from '../Filter'
 import { selectFilter, selectPosts } from '../../redux/selectors'
+import { AddPost } from '../AddPost'
 
 export const PostList = () => {
 	const posts = useSelector(selectPosts)
@@ -17,6 +18,7 @@ export const PostList = () => {
 	const filteredData = getFilteredData()
 	return (
 		<>
+			<AddPost />
 			<Filter />
 			<ul className='flex flex-col w-full mx-auto py-10 px-10 gap-4'>
 				{filteredData.map(post => (
