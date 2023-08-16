@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -12,21 +16,6 @@ code {
     monospace;
 }
 
-.title{
-  color: red;
-	font-size: 3rem;
-	text-decoration: underline;
-}
-
-.global{
-  font-weight: bold;
-}
-.wrapper{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: lightgray;
-  flex-direction: column;
-  gap:10px;
+.active{
+  color: black;
 }
