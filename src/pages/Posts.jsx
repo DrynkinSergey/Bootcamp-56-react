@@ -11,7 +11,7 @@ export const Posts = () => {
 	const loading = useSelector(state => state.postList.loading)
 	useEffect(() => {
 		dispatch(setLoading(true))
-		axios.get('https://dummyjson.com/posts').then(res => {
+		axios.get('https://dummyjson.com/posts?limit=100').then(res => {
 			dispatch(fetchPosts(res.data.posts))
 			dispatch(setLoading(false))
 		})

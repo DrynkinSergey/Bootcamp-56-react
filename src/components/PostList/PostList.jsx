@@ -2,10 +2,11 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { PostItem } from './PostItem'
 import { Filter } from '../Filter'
+import { selectFilter, selectPosts } from '../../redux/selectors'
 
 export const PostList = () => {
-	const posts = useSelector(state => state.postList.posts)
-	const filter = useSelector(state => state.postList.filter)
+	const posts = useSelector(selectPosts)
+	const filter = useSelector(selectFilter)
 	const getFilteredData = () => {
 		return posts.filter(
 			post =>
