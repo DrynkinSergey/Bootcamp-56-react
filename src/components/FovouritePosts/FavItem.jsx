@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { removeFromFav } from '../../redux/fovouriteSlice'
+import { deletePost } from '../../redux/postsSlice'
 
 export const FavItem = ({ title, body, id }) => {
 	const favItem = { title, body, id }
@@ -15,6 +16,12 @@ export const FavItem = ({ title, body, id }) => {
 					className='hover:bg-red-500 hover:text-white border-2 border-black px-3 rounded-md'
 				>
 					Delete
+				</button>
+				<button
+					onClick={() => dispatch(deletePost(id))}
+					className='hover:bg-red-500 hover:text-white border-2 border-black px-3 rounded-md'
+				>
+					Delete from anywere
 				</button>
 			</div>
 		</li>

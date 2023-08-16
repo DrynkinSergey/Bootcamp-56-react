@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { deletePost } from './postsSlice'
+import { deletePostAction } from '../helpers/reducersHelpers/deleteActionHelper'
 
 const favouriteSlice = createSlice({
 	name: 'favourite',
@@ -12,6 +14,9 @@ const favouriteSlice = createSlice({
 		removeFromFav: (state, { payload }) => {
 			state.favouritePosts = state.favouritePosts.filter(item => item.id !== payload)
 		},
+	},
+	extraReducers: builder => {
+		builder.addCase(deletePost, (state, { payload }) => deletePostAction(state, { payload }, 'favouritePosts'))
 	},
 })
 
