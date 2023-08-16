@@ -1,4 +1,4 @@
-export const AddForm = ({ onSubmit }) => {
+export const AddForm = () => {
 	const handleSubmit = e => {
 		e.preventDefault()
 		if (e.target.addTodo.value.trim()) {
