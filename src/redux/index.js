@@ -4,6 +4,7 @@ import { favouritePostReducer } from './fovouriteSlice'
 
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { userReducer } from './userSlice'
 
 const persistConfigPosts = {
 	key: 'posts',
@@ -22,6 +23,7 @@ export const store = configureStore({
 	reducer: {
 		postList: persistedReducerPosts,
 		favourite: persistedReducerFav,
+		user: userReducer,
 	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({

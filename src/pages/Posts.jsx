@@ -20,6 +20,6 @@ export const Posts = () => {
 			dispatch(fetchPosts(res.data.posts))
 			dispatch(setLoading(false))
 		})
-	}, [dispatch])
+	}, [dispatch, posts.length])
 	return <div>{loading ? <Loader /> : <PostList />}</div>
 }
