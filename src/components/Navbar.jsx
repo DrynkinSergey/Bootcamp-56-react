@@ -10,6 +10,9 @@ export const Navbar = () => {
 			<NavLink className='hover:text-black-500 text-2xl text-white font-bold' to='/posts'>
 				Posts
 			</NavLink>
+			<NavLink className='hover:text-black-500 text-2xl text-white font-bold' to='/favourite'>
+				Favourite
+			</NavLink>
 		</nav>
 	)
 }
