@@ -9,6 +9,7 @@ export const persistConfigFav = {
 	key: 'favourite',
 	version: 1,
 	storage,
+	blacklist: ['filter'],
 }
 export const persistConfigUser = {
 	key: 'user',

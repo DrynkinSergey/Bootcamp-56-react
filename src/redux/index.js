@@ -6,9 +6,18 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import { userReducer } from './userSlice'
 import { persistConfigFav, persistConfigPosts, persistConfigUser } from './persistConfigs'
 import { todoReducer } from './todoSlice'
-
+import { toast } from 'react-toastify'
 const persistedReducerPosts = persistReducer(persistConfigPosts, postsReducer)
 const persistedReducerFav = persistReducer(persistConfigFav, favouritePostReducer)
+
+const myLogger = store => next => action => {
+	if (action.payload?.title === 'angular') {
+		action.payload.title = 'React'
+		toast.warning('Angular is find!! ALARM')
+		console.log('dont do this')
+	}
+	next(action)
+}
 
 export const store = configureStore({
 	reducer: {
@@ -22,7 +31,7 @@ export const store = configureStore({
 			serializableCheck: {
 				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 			},
-		}),
+		}).concat(myLogger),
 })
 
 export const persistor = persistStore(store)

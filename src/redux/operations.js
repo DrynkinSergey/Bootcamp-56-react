@@ -1,9 +1,8 @@
 // https://64abd6919edb4181202ea4d0.mockapi.io/todos
 
 import axios from 'axios'
-import { getTodos, loading, errorStatus, addTodo, removeTodo } from './todoSlice'
 import { toast } from 'react-toastify'
-import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk } from '@reduxjs/toolkit'
 // axios.defaults.baseURL = 'https://64abd6919edb4181202ea4d0.mockapi.io'
 export const todoInstance = axios.create({
 	baseURL: 'https://64abd6919edb4181202ea4d0.mockapi.io',
