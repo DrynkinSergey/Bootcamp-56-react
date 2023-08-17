@@ -1,8 +1,15 @@
+import { useDispatch } from 'react-redux'
+import { addTodo } from '../../redux/todoSlice'
+import { nanoid } from '@reduxjs/toolkit'
+import { addTodoThunk } from '../../redux/operations'
+
 export const AddForm = () => {
+	const dispatch = useDispatch()
 	const handleSubmit = e => {
 		e.preventDefault()
 		if (e.target.addTodo.value.trim()) {
 			const title = e.target.addTodo.value.trim()
+			dispatch(addTodoThunk({ title }))
 			e.target.reset()
 			e.target.focus()
 		}

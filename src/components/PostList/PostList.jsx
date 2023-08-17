@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { PostItem } from './PostItem'
 import { Filter } from '../Filter'
 import { selectFilter, selectPosts } from '../../redux/selectors'
-import { AddPost } from '../../pages/AddPost'
 import { useNavigate } from 'react-router-dom'
 
 export const PostList = () => {

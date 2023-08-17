@@ -5,6 +5,7 @@ import { favouritePostReducer } from './fovouriteSlice'
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
 import { userReducer } from './userSlice'
 import { persistConfigFav, persistConfigPosts, persistConfigUser } from './persistConfigs'
+import { todoReducer } from './todoSlice'
 
 const persistedReducerPosts = persistReducer(persistConfigPosts, postsReducer)
 const persistedReducerFav = persistReducer(persistConfigFav, favouritePostReducer)
@@ -14,6 +15,7 @@ export const store = configureStore({
 		postList: persistedReducerPosts,
 		favourite: persistedReducerFav,
 		user: persistReducer(persistConfigUser, userReducer),
+		todoList: todoReducer,
 	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({

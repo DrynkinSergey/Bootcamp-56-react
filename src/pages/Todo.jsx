@@ -3,8 +3,16 @@ import bg from '../assets/images/bg-desktop-dark.jpg'
 import bgMobile from '../assets/images/bg-mobile-dark.jpg'
 import { AddForm } from '../components/Todo/AddForm'
 import { TodoList } from '../components/Todo/todoList'
+import { fetchTodos } from '../redux/operations'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 
 export const Todo = () => {
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(fetchTodos())
+	}, [dispatch])
 	const bgImage = useMemo(
 		() => (
 			<>
