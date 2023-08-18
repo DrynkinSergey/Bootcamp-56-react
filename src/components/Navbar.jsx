@@ -19,6 +19,10 @@ export const Navbar = () => {
 			src: '/todo',
 			title: 'Todo',
 		},
+		{
+			src: '/books',
+			title: 'Book SHELF',
+		},
 	]
 	return (
 		<nav className='py-4 flex px-10 lg:bg-red-500 md:bg-green-500  gap-4 bg-teal-500'>

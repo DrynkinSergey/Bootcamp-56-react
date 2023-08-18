@@ -11,9 +11,9 @@ export const TodoList = () => {
 	return (
 		<div className='font-josefin bg-darkMain shadow-mainDark'>
 			<ul className='rounded-md overflow-hidden'>
-				{loading && <h1 className='text-white text-4xl'>Loading...</h1>}
+				{loading && !data.length && <h1 className='text-white text-4xl'>Loading...</h1>}
 				{error && toast.error(error)}
-				{!error && !loading && <ViewData />}
+				{!error && <ViewData />}
 			</ul>
 		</div>
 	)

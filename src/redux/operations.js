@@ -27,14 +27,27 @@ export const addTodoThunk = createAsyncThunk('addTodo', async (body, thunkAPI) =
 	}
 })
 
-export const deleteTodoThunk = createAsyncThunk('todos/delete', async (id, { rejectWithValue }) => {
-	try {
-		const { data } = await todoInstance.delete(`/todos/${id}`)
-		return data.id
-	} catch (error) {
-		return rejectWithValue(error.message)
+export const deleteTodoThunk = createAsyncThunk(
+	'todos/delete',
+	async (id, { rejectWithValue }) => {
+		try {
+			await todoInstance.delete(`/todos/${id}`)
+			return id
+		} catch (error) {
+			return rejectWithValue(error.message)
+		}
+	},
+	{
+		condition: (_, { getState }) => {
+			console.log(getState())
+			const loading = getState().todoList.loading
+			if (loading) {
+				toast.info('You have active loading')
+				return false
+			}
+		},
 	}
-})
+)
 
 export const updateTodoThunk = createAsyncThunk('todos/update', async (body, { rejectWithValue }) => {
 	try {

@@ -9,6 +9,7 @@ import { AddPost } from './pages/AddPost'
 import { Login } from './pages/Login'
 import { useSelector } from 'react-redux'
 import { Todo } from './pages/Todo'
+import { Books } from './pages/Books'
 
 export const App = () => {
 	const isLoggedIn = useSelector(state => state.user.isLoggedIn)
@@ -29,6 +30,7 @@ export const App = () => {
 					<Route path='addPost' element={<AddPost />} />
 					<Route path='favourite' element={<Favourite />} />
 					<Route path='todo' element={<Todo />} />
+					<Route path='books' element={<Books />} />
 				</Route>
 				<Route path='*' element={<NotFound />} />
 			</Routes>

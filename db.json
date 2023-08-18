@@ -1,12 +1,12 @@
 {
 	"books": [
 		{
-			"id": "u9kgwNWGi3uUUwh0b8V49",
+			"id": 1,
 			"title": "Eloquent JavaScript, Third Edition",
 			"author": "Marijn Haverbeke"
 		},
 		{
-			"id": "YxhM4QDxPeA3SmPHcEZPJ",
+			"id": "2",
 			"title": "Practical Modern JavaScript",
 			"author": "Nicolas Bevacqua"
 		},
@@ -39,6 +39,40 @@
 			"id": "CTHE0f1kkWwqS5sL2tI8_",
 			"title": "Rethinking Productivity in Software Engineering",
 			"author": "Caitlin Sadowski, Thomas Zimmermann"
+		},
+		{
+			"id": "YxhM4QDxPeA3SmPHcEZPR",
+			"title": "Understanding Redux",
+			"author": "Sergey D"
+		},
+		{
+			"title": "Eloquent JavaScript, Third Edition2",
+			"author": "Marijn Haverbeke",
+			"id": "rWXwIqV"
+		}
+	],
+	"todos": [
+		{
+			"title": "React",
+			"completed": false,
+			"id": "1"
+		},
+		{
+			"id": "HM9g3uD",
+			"title": "Redux",
+			"completed": false
+		},
+		{
+			"title": "Js",
+			"id": "znBF_DM"
+		},
+		{
+			"title": "MongoDb",
+			"id": "isXOv-T"
+		},
+		{
+			"title": "json-server",
+			"id": "9qzg6xq"
 		}
 	]
 }

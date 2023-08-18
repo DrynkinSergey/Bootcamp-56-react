@@ -7,6 +7,7 @@ import { userReducer } from './userSlice'
 import { persistConfigFav, persistConfigPosts, persistConfigUser } from './persistConfigs'
 import { todoReducer } from './todoSlice'
 import { toast } from 'react-toastify'
+import { bookReducer } from './Books/bookSlice'
 const persistedReducerPosts = persistReducer(persistConfigPosts, postsReducer)
 const persistedReducerFav = persistReducer(persistConfigFav, favouritePostReducer)
 
@@ -25,6 +26,7 @@ export const store = configureStore({
 		favourite: persistedReducerFav,
 		user: persistReducer(persistConfigUser, userReducer),
 		todoList: todoReducer,
+		booksList: bookReducer,
 	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({

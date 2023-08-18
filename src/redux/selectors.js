@@ -16,6 +16,10 @@ export const selectIsLoading = state => state.todoList.loading
 export const selectError = state => state.todoList.error
 export const selectFilterTodos = state => state.todoList.filter
 
+// Books selectors
+
+export const selectAllBooks = state => state.booksList.books
+
 // export const selectNotCompleted = (state, todos) => {
 // 	console.log(state, todos)
 // 	return todos.reduce((acc, curr) => (curr.completed ? acc : acc + 1), 0)
