@@ -12,13 +12,15 @@ const slice = createSlice({
 		todos: [],
 		loading: false,
 		error: '',
+		filter: 'all',
+		filterStr: '',
 	},
 	reducers: {
-		toggleTodo: (state, { payload }) => {
-			const item = state.todos.find(item => item.id === payload)
-			if (item) {
-				item.completed = !item.completed
-			}
+		setFilter: (state, { payload }) => {
+			state.filter = payload
+		},
+		changeFilter: (state, { payload }) => {
+			state.filterStr = payload
 		},
 	},
 	extraReducers: builder => {
@@ -49,12 +51,9 @@ const slice = createSlice({
 					state.loading = false
 				}
 			)
-			.addMatcher(
-				isAnyOf(fetchTodos.pending, addTodoThunk.pending, deleteTodoThunk.pending, updateTodoThunk.pending),
-				pending
-			)
+			.addMatcher(isAnyOf(fetchTodos.pending), pending)
 	},
 })
 
-export const { addTodo, removeTodo, toggleTodo } = slice.actions
+export const { setFilter, changeFilter } = slice.actions
 export const todoReducer = slice.reducer

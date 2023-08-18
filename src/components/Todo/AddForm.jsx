@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { addTodo } from '../../redux/todoSlice'
+import { addTodo, changeFilter } from '../../redux/todoSlice'
 import { nanoid } from '@reduxjs/toolkit'
 import { addTodoThunk } from '../../redux/operations'
 
@@ -10,6 +10,7 @@ export const AddForm = () => {
 		if (e.target.addTodo.value.trim()) {
 			const title = e.target.addTodo.value.trim()
 			dispatch(addTodoThunk({ title }))
+
 			e.target.reset()
 			e.target.focus()
 		}
@@ -23,6 +24,7 @@ export const AddForm = () => {
 				autoComplete='off'
 				placeholder='Add some todo....'
 				className=' px-4  w-2/3 rounded-md mr-4 text-black'
+				onChange={e => dispatch(changeFilter(e.target.value))}
 				name='addTodo'
 				type='text'
 			/>

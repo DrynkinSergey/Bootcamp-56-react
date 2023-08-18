@@ -1,9 +1,13 @@
-import { useSelector } from 'react-redux'
-import { selectNotCompleted, selectTodos } from '../../redux/selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectNotCompleted, selectNotCompletedWithMemo, selectTodos } from '../../redux/selectors'
+import { setFilter } from '../../redux/todoSlice'
+import { calculateTodos } from '../../helpers/calculateTodos'
 
 export const Filter = () => {
+	const dispatch = useDispatch()
 	const todos = useSelector(selectTodos)
-	const notCompleted = useSelector(state => selectNotCompleted(state, todos))
+
+	const notCompleted = useSelector(selectNotCompletedWithMemo)
 	const filter = ''
 	const setClasses = type => (filter === type ? `${classes} text-blue-600` : classes)
 	const classes = 'hover:text-white cursor-pointer'
@@ -17,9 +21,15 @@ export const Filter = () => {
 				</span>
 			)}
 			<div className='flex gap-4 order-3 mt-4 md:mt-0  md:order-2'>
-				<span className={setClasses('all')}>All</span>
-				<span className={setClasses('active')}>Active</span>
-				<span className={setClasses('completed')}>Completed</span>
+				<span onClick={() => dispatch(setFilter('all'))} className={setClasses('all')}>
+					All
+				</span>
+				<span onClick={() => dispatch(setFilter('active'))} className={setClasses('active')}>
+					Active
+				</span>
+				<span onClick={() => dispatch(setFilter('completed'))} className={setClasses('completed')}>
+					Completed
+				</span>
 			</div>
 		</li>
 	)
