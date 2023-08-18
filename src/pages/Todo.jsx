@@ -6,6 +6,7 @@ import { TodoList } from '../components/Todo/todoList'
 import { fetchTodos } from '../redux/operations'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
+import { Filter } from '../components/Todo/Filter'
 
 export const Todo = () => {
 	const dispatch = useDispatch()
@@ -29,6 +30,7 @@ export const Todo = () => {
 				<span className='font-extrabold mb-8 text-2xl text-white/80'>TODO:</span>
 				<AddForm />
 				<TodoList />
+				<Filter />
 			</div>
 		</div>
 	)
