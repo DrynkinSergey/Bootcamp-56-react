@@ -8,6 +8,8 @@ import { persistConfigFav, persistConfigPosts, persistConfigUser } from './persi
 import { todoReducer } from './todoSlice'
 import { toast } from 'react-toastify'
 import { bookReducer } from './Books/bookSlice'
+import { booksApi } from './rtkQUERY/api'
+import { todosApi } from './rtkQUERY/todosApi'
 const persistedReducerPosts = persistReducer(persistConfigPosts, postsReducer)
 const persistedReducerFav = persistReducer(persistConfigFav, favouritePostReducer)
 
@@ -27,13 +29,15 @@ export const store = configureStore({
 		user: persistReducer(persistConfigUser, userReducer),
 		todoList: todoReducer,
 		booksList: bookReducer,
+		[todosApi.reducerPath]: todosApi.reducer,
+		[booksApi.reducerPath]: booksApi.reducer,
 	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({
 			serializableCheck: {
 				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 			},
-		}).concat(myLogger),
+		}).concat(booksApi.middleware, todosApi.middleware),
 })
 
 export const persistor = persistStore(store)

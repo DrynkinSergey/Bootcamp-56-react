@@ -3,10 +3,12 @@ import icon from '../../assets/images/icon-check.svg'
 import { removeTodo, toggleTodo } from '../../redux/todoSlice'
 import { deleteTodoThunk, updateTodoThunk } from '../../redux/operations'
 import { selectIsLoading, selectLoading } from '../../redux/selectors'
+import { useDeleteTodoMutation } from '../../redux/rtkQUERY/todosApi'
 export const SingleTodo = ({ id, title, completed }) => {
 	const stylesActive = completed ? 'bg-gradient-to-br from-checkboxFrom to-checkboxTo' : ''
 	const dispatch = useDispatch()
 	const loading = useSelector(selectIsLoading)
+	const [deleleTodo] = useDeleteTodoMutation()
 	return (
 		<li className='group  list-none cursor-pointer  py-4  border-b-white/10 border-b-[1px] text-white/80 grid   grid-cols-todo items-center'>
 			<label className='relative inline-block cursor-pointer'>
@@ -20,8 +22,7 @@ export const SingleTodo = ({ id, title, completed }) => {
 			<span className={completed ? 'line-through text-white/20 transition-all' : 'transition-all'}>{title}</span>
 			<button
 				onClick={() => {
-					console.log('click')
-					dispatch(deleteTodoThunk(id))
+					deleleTodo(id)
 				}}
 				className=' transition-all hidden text-white/20 hover:text-white  group-hover:block mx-auto'
 			>

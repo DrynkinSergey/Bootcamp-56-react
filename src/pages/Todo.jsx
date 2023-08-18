@@ -9,11 +9,6 @@ import { useEffect } from 'react'
 import { Filter } from '../components/Todo/Filter'
 
 export const Todo = () => {
-	const dispatch = useDispatch()
-
-	useEffect(() => {
-		dispatch(fetchTodos())
-	}, [dispatch])
 	const bgImage = useMemo(
 		() => (
 			<>

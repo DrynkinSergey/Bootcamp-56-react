@@ -2,9 +2,10 @@ import { useSelector } from 'react-redux'
 import { SingleTodo } from './singleTodo'
 import { selectError, selectFilteredData, selectFilteredDataMemo, selectIsLoading } from '../../redux/selectors'
 import { toast } from 'react-toastify'
+import { useFetchTodosQuery } from '../../redux/rtkQUERY/todosApi'
 
 export const TodoList = () => {
-	const data = useSelector(selectFilteredDataMemo)
+	const { data = [] } = useFetchTodosQuery()
 	const ViewData = () => data.map(todo => <SingleTodo key={todo.id} {...todo} />).reverse()
 	const loading = useSelector(selectIsLoading)
 	const error = useSelector(selectError)

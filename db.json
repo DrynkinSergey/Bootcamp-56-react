@@ -1,78 +1,43 @@
 {
-	"books": [
-		{
-			"id": 1,
-			"title": "Eloquent JavaScript, Third Edition",
-			"author": "Marijn Haverbeke"
-		},
-		{
-			"id": "2",
-			"title": "Practical Modern JavaScript",
-			"author": "Nicolas Bevacqua"
-		},
-		{
-			"id": "zCd_RioNMOBaQwAXnc8Px",
-			"title": "Understanding ECMAScript 6",
-			"author": "Nicholas C. Zakas"
-		},
-		{
-			"id": "ck89qe3HriUDHe09TBoJ8",
-			"title": "Speaking JavaScript",
-			"author": "Axel Rauschmayer"
-		},
-		{
-			"id": "e1Tpn_I3wBkLREY6wG0lb",
-			"title": "Learning JavaScript Design Patterns",
-			"author": "Addy Osmani"
-		},
-		{
-			"id": "Op8ApLTY0-Vn2cR0vDIwG",
-			"title": "You Don't Know JS Yet",
-			"author": "Kyle Simpson"
-		},
-		{
-			"id": "dkJSszfrRVtLVR_MfRqcu",
-			"title": "Pro Git",
-			"author": "Scott Chacon and Ben Straub"
-		},
-		{
-			"id": "CTHE0f1kkWwqS5sL2tI8_",
-			"title": "Rethinking Productivity in Software Engineering",
-			"author": "Caitlin Sadowski, Thomas Zimmermann"
-		},
-		{
-			"id": "YxhM4QDxPeA3SmPHcEZPR",
-			"title": "Understanding Redux",
-			"author": "Sergey D"
-		},
-		{
-			"title": "Eloquent JavaScript, Third Edition2",
-			"author": "Marijn Haverbeke",
-			"id": "rWXwIqV"
-		}
-	],
-	"todos": [
-		{
-			"title": "React",
-			"completed": false,
-			"id": "1"
-		},
-		{
-			"id": "HM9g3uD",
-			"title": "Redux",
-			"completed": false
-		},
-		{
-			"title": "Js",
-			"id": "znBF_DM"
-		},
-		{
-			"title": "MongoDb",
-			"id": "isXOv-T"
-		},
-		{
-			"title": "json-server",
-			"id": "9qzg6xq"
-		}
-	]
+  "books": [
+    {
+      "id": 1,
+      "title": "Eloquent JavaScript, Third Edition",
+      "author": "Marijn Haverbeke"
+    },
+    {
+      "id": "2",
+      "title": "Practical Modern JavaScript",
+      "author": "Nicolas Bevacqua"
+    },
+    {
+      "title": "Eloquent JavaScript, Third Edition",
+      "author": "TEST AUTHOR",
+      "id": "aFOyf8C"
+    }
+  ],
+  "todos": [
+    {
+      "title": "React",
+      "completed": false,
+      "id": "1"
+    },
+    {
+      "id": "HM9g3uD",
+      "title": "Redux",
+      "completed": false
+    },
+    {
+      "title": "Js",
+      "id": "znBF_DM"
+    },
+    {
+      "title": "MongoDb",
+      "id": "isXOv-T"
+    },
+    {
+      "title": "json-server",
+      "id": "9qzg6xq"
+    }
+  ]
 }
