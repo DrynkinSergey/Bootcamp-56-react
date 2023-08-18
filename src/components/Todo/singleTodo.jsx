@@ -3,14 +3,24 @@ import icon from '../../assets/images/icon-check.svg'
 import { removeTodo, toggleTodo } from '../../redux/todoSlice'
 import { deleteTodoThunk, updateTodoThunk } from '../../redux/operations'
 import { selectIsLoading, selectLoading } from '../../redux/selectors'
+import { motion } from 'framer-motion'
 import { useDeleteTodoMutation } from '../../redux/rtkQUERY/todosApi'
-export const SingleTodo = ({ id, title, completed }) => {
+export const SingleTodo = ({ id, title, completed, idx }) => {
 	const stylesActive = completed ? 'bg-gradient-to-br from-checkboxFrom to-checkboxTo' : ''
 	const dispatch = useDispatch()
 	const loading = useSelector(selectIsLoading)
 	const [deleleTodo] = useDeleteTodoMutation()
 	return (
-		<li className='group  list-none cursor-pointer  py-4  border-b-white/10 border-b-[1px] text-white/80 grid   grid-cols-todo items-center'>
+		<motion.li
+			initial={{ opacity: 0, x: idx % 2 === 0 ? 200 : -200 }}
+			animate={{ opacity: 1, x: 0, rotate: 0 }}
+			exit={{
+				opacity: 0,
+				x: idx % 2 === 0 ? -200 : 200,
+			}}
+			transition={{ duration: 0.5 }}
+			className='group  list-none cursor-pointer  py-4  border-b-white/10 border-b-[1px] text-white/80 grid  bg-darkMain grid-cols-todo items-center'
+		>
 			<label className='relative inline-block cursor-pointer'>
 				<span
 					onClick={() => dispatch(updateTodoThunk({ id, title, completed: !completed }))}
@@ -28,6 +38,6 @@ export const SingleTodo = ({ id, title, completed }) => {
 			>
 				X
 			</button>
-		</li>
+		</motion.li>
 	)
 }

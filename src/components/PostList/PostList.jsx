@@ -4,6 +4,7 @@ import { PostItem } from './PostItem'
 import { Filter } from '../Filter'
 import { selectFilter, selectPosts } from '../../redux/selectors'
 import { useNavigate } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 
 export const PostList = () => {
 	const navigate = useNavigate()
@@ -28,9 +29,11 @@ export const PostList = () => {
 			</button>
 			<Filter />
 			<ul className='flex flex-col w-full mx-auto py-10 px-10 gap-4'>
-				{filteredData.map(post => (
-					<PostItem key={post.id} {...post} />
-				))}
+				<AnimatePresence mode='wait'>
+					{filteredData.map((post, idx) => (
+						<PostItem key={post.id} {...post} idx={idx} />
+					))}
+				</AnimatePresence>
 			</ul>
 		</>
 	)

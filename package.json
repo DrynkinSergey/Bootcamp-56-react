@@ -10,6 +10,7 @@
 		"@testing-library/user-event": "^13.5.0",
 		"axios": "^1.4.0",
 		"clsx": "^2.0.0",
+		"framer-motion": "^10.16.0",
 		"json-server": "^0.17.3",
 		"modern-normalize": "^2.0.0",
 		"nanoid": "^4.0.2",
