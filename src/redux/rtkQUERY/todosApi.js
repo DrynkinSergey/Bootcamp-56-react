@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const todosApi = createApi({
 	reducerPath: 'todosApi',
+	refetchOnFocus: true,
 	tagTypes: ['todos'],
 	baseQuery: fetchBaseQuery({
 		baseUrl: 'https://64abd6919edb4181202ea4d0.mockapi.io',

@@ -1,43 +1,43 @@
 {
-  "books": [
-    {
-      "id": 1,
-      "title": "Eloquent JavaScript, Third Edition",
-      "author": "Marijn Haverbeke"
-    },
-    {
-      "id": "2",
-      "title": "Practical Modern JavaScript",
-      "author": "Nicolas Bevacqua"
-    },
-    {
-      "title": "Eloquent JavaScript, Third Edition",
-      "author": "TEST AUTHOR",
-      "id": "aFOyf8C"
-    }
-  ],
-  "todos": [
-    {
-      "title": "React",
-      "completed": false,
-      "id": "1"
-    },
-    {
-      "id": "HM9g3uD",
-      "title": "Redux",
-      "completed": false
-    },
-    {
-      "title": "Js",
-      "id": "znBF_DM"
-    },
-    {
-      "title": "MongoDb",
-      "id": "isXOv-T"
-    },
-    {
-      "title": "json-server",
-      "id": "9qzg6xq"
-    }
-  ]
+	"books": [
+		{
+			"id": 1,
+			"title": "Eloquent JavaScript, Third Edition",
+			"author": "Marijn Haverbeke"
+		},
+		{
+			"id": "2",
+			"title": "Practical Modern JavaScript",
+			"author": "Nicolas Bevacqua"
+		},
+		{
+			"title": "Eloquent JavaScript, Third Edition",
+			"author": "TEST AUTHOR",
+			"id": "aFOyf8C"
+		}
+	],
+	"todos": [
+		{
+			"title": "React",
+			"completed": false,
+			"id": "1"
+		},
+		{
+			"id": "HM9g3uD",
+			"title": "Redux",
+			"completed": false
+		},
+		{
+			"title": "Js",
+			"id": "znBF_DM"
+		},
+		{
+			"title": "MongoDb",
+			"id": "isXOv-T"
+		},
+		{
+			"title": "json-server",
+			"id": "9qzg6xq"
+		}
+	]
 }

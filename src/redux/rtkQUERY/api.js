@@ -3,8 +3,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const booksApi = createApi({
 	reducerPath: 'booksApi',
 	tagTypes: ['books'],
+	refetchOnFocus: true,
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'https://64abd6919edb4181202ea4d0.mockapi.io/',
+		baseUrl: 'http://localhost:4444/',
 	}),
 	endpoints: builder => ({
 		fetchBooks: builder.query({

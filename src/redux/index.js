@@ -10,6 +10,7 @@ import { toast } from 'react-toastify'
 import { bookReducer } from './Books/bookSlice'
 import { booksApi } from './rtkQUERY/api'
 import { todosApi } from './rtkQUERY/todosApi'
+import { setupListeners } from '@reduxjs/toolkit/dist/query'
 const persistedReducerPosts = persistReducer(persistConfigPosts, postsReducer)
 const persistedReducerFav = persistReducer(persistConfigFav, favouritePostReducer)
 
@@ -41,3 +42,4 @@ export const store = configureStore({
 })
 
 export const persistor = persistStore(store)
+setupListeners(store.dispatch)
