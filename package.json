@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "clsx": "^2.0.0",
+    "json-server": "^0.17.3",
     "modern-normalize": "^2.0.0",
     "nanoid": "^4.0.2",
     "prop-types": "^15.8.1",
@@ -29,6 +30,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "server": "json-server --watch -p 3002 db.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
