@@ -1,17 +1,34 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginThunk } from '../redux/Auth/operations'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
+//HOC - High Order Component
 
 export const Login = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
+	const location = useLocation()
+	console.log(location)
+
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
 	const handleSubmit = e => {
 		e.preventDefault()
 		const credentials = { email, password }
 		dispatch(loginThunk(credentials))
+			.unwrap()
+			.then(res => {
+				console.log(res)
+				toast.success(`Welcome back, ${res.user.name}`)
+				navigate(location.state?.from || '/')
+			})
+			.catch(err => {
+				toast.error('Try another data!!')
+			})
 	}
 	return (
 		<section className='flex flex-col gap-4 mx-auto min-h-[80vh] items-center justify-center mt-4 '>

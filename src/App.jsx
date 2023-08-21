@@ -6,6 +6,7 @@ import { NotFound } from './pages/NotFound'
 import { Login } from './pages/Login'
 import { Todo } from './pages/Todo'
 import { Register } from './pages/Register'
+import { PrivateRoute } from './HOC/PrivateRoute'
 
 export const App = () => {
 	return (
@@ -13,7 +14,14 @@ export const App = () => {
 			<Routes>
 				<Route path='/' element={<Layout />}>
 					<Route index element={<Home />} />
-					<Route path='todo' element={<Todo />} />
+					<Route
+						path='todo'
+						element={
+							<PrivateRoute>
+								<Todo />
+							</PrivateRoute>
+						}
+					/>
 					<Route path='register' element={<Register />} />
 					<Route path='login' element={<Login />} />
 				</Route>

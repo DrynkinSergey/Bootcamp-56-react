@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { selectIsLoggedIn, selectUser } from '../redux/Auth/selectors'
 import { logoutThunk } from '../redux/Auth/operations'
+import { toast } from 'react-toastify'
 
 export const Navbar = () => {
 	const links = [
@@ -19,6 +20,13 @@ export const Navbar = () => {
 	const dispatch = useDispatch()
 	const isLoggedIn = useSelector(selectIsLoggedIn)
 	const { email } = useSelector(selectUser)
+	const handleExit = () => {
+		dispatch(logoutThunk())
+			.unwrap()
+			.then(() => {
+				toast.success('Goobye!')
+			})
+	}
 	return (
 		<nav className='py-4 flex px-10 justify-between lg:bg-red-500 md:bg-green-500  gap-4 bg-teal-500'>
 			<div className='flex gap-4'>
@@ -40,7 +48,7 @@ export const Navbar = () => {
 					</NavLink>
 				</div>
 			) : (
-				<button onClick={() => dispatch(logoutThunk())} className='hover:text-black text-2xl text-white font-bold'>
+				<button onClick={handleExit} className='hover:text-black text-2xl text-white font-bold'>
 					Exit
 				</button>
 			)}
