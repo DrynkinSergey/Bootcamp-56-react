@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { SingleTodo } from './singleTodo'
-import { selectError, selectFilteredData, selectFilteredDataMemo, selectIsLoading } from '../../redux/selectors'
+import { selectError, selectIsLoading } from '../../redux/selectors'
 import { toast } from 'react-toastify'
 import { useFetchTodosQuery } from '../../redux/rtkQUERY/todosApi'
 

@@ -4,7 +4,6 @@ import { removeFromFav } from '../../redux/fovouriteSlice'
 import { deletePost } from '../../redux/postsSlice'
 
 export const FavItem = ({ title, body, id }) => {
-	const favItem = { title, body, id }
 	const dispatch = useDispatch()
 	return (
 		<li className='border-2 border-black px-4 py-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer '>
