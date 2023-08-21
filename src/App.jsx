@@ -1,11 +1,11 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
-import { Home } from './pages/Home'
-import { NotFound } from './pages/NotFound'
-import { Login } from './pages/Login'
-import { Todo } from './pages/Todo'
-import { Register } from './pages/Register'
+import { Home, Login, NotFound, Register, Todo } from './pages'
+// import { NotFound } from './pages/NotFound'
+// import { Login } from './pages/Login'
+// import { Todo } from './pages/Todo'
+// import { Register } from './pages/Register'
 import { PrivateRoute } from './HOC/PrivateRoute'
 
 export const App = () => {

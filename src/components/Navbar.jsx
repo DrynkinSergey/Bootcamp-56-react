@@ -35,6 +35,11 @@ export const Navbar = () => {
 						{title}
 					</NavLink>
 				))}
+				{isLoggedIn && (
+					<NavLink className='hover:text-black-500 text-2xl text-white font-bold' to='/login'>
+						Example hidden
+					</NavLink>
+				)}
 			</div>
 			<div>{email}</div>
 			{!isLoggedIn ? (

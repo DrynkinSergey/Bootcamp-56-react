@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loginThunk } from '../redux/Auth/operations'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { selectIsLoggedIn, selectUser } from '../redux/Auth/selectors'
 
 //HOC - High Order Component
 
@@ -12,6 +13,8 @@ export const Login = () => {
 
 	const location = useLocation()
 	console.log(location)
+	const isLoggedIn = useSelector(selectIsLoggedIn)
+	const { name } = useSelector(selectUser)
 
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
@@ -20,16 +23,22 @@ export const Login = () => {
 		e.preventDefault()
 		const credentials = { email, password }
 		dispatch(loginThunk(credentials))
-			.unwrap()
-			.then(res => {
-				console.log(res)
-				toast.success(`Welcome back, ${res.user.name}`)
-				navigate(location.state?.from || '/')
-			})
-			.catch(err => {
-				toast.error('Try another data!!')
-			})
+		// .unwrap()
+		// .then(res => {
+		// 	console.log(res)
+		// 	toast.success(`Welcome back, ${res.user.name}`)
+		// 	navigate(location.state?.from || '/')
+		// })
+		// .catch(err => {
+		// 	toast.error('Try another data!!')
+		// })
 	}
+
+	if (isLoggedIn) {
+		toast.success(`Welcome back, ${name}`)
+		return <Navigate to={location.state?.from || '/'} />
+	}
+
 	return (
 		<section className='flex flex-col gap-4 mx-auto min-h-[80vh] items-center justify-center mt-4 '>
 			<div className='border-2 border-black rounded-lg shadow-md px-4 py-6'>
