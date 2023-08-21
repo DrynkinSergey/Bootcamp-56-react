@@ -57,31 +57,3 @@ export const updateTodoThunk = createAsyncThunk('todos/update', async (body, { r
 		return rejectWithValue(error.message)
 	}
 })
-
-// export const fetchTodos = () => async dispatch => {
-// 	try {
-// 		dispatch(loading(true))
-// 		const res = await todoInstance.get('/todos')
-// 		toast.success(`you have ${res.data.length} todos!`)
-// 		dispatch(getTodos(res.data))
-// 	} catch (error) {
-// 		dispatch(errorStatus(error.message))
-// 	}
-// }
-
-// export const addTodoThunk = todo => async dispatch => {
-// 	try {
-// 		const res = await todoInstance.post('/todos', todo)
-// 		dispatch(addTodo(res.data))
-// 		console.log(res.data)
-// 	} catch (error) {}
-// }
-// export const deleteTodoThunk = id => async dispatch => {
-// 	try {
-// 		const res = await todoInstance.delete(`/todos/${id}`)
-// 		dispatch(removeTodo(id))
-// 		console.log(res.data)
-// 	} catch (error) {}
-// }
-
-// thunk

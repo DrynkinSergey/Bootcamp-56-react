@@ -9,22 +9,12 @@ export const Navbar = () => {
 			src: '/',
 			title: 'Home',
 		},
-		{
-			src: '/posts',
-			title: 'Posts',
-		},
-		{
-			src: '/favourite',
-			title: 'Favourite',
-		},
+
 		{
 			src: '/todo',
 			title: 'Todo',
 		},
-		{
-			src: '/books',
-			title: 'Book SHELF',
-		},
+
 		{
 			src: '/register',
 			title: 'Register',

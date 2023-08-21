@@ -2,11 +2,9 @@ import { useDispatch } from 'react-redux'
 import icon from '../../assets/images/icon-check.svg'
 import { updateTodoThunk } from '../../redux/operations'
 import { motion } from 'framer-motion'
-import { useDeleteTodoMutation } from '../../redux/rtkQUERY/todosApi'
 export const SingleTodo = ({ id, title, completed, idx }) => {
 	const stylesActive = completed ? 'bg-gradient-to-br from-checkboxFrom to-checkboxTo' : ''
 	const dispatch = useDispatch()
-	const [deleleTodo] = useDeleteTodoMutation()
 	return (
 		<motion.li
 			initial={{ opacity: 0, x: idx % 2 === 0 ? 200 : -200 }}
@@ -29,7 +27,7 @@ export const SingleTodo = ({ id, title, completed, idx }) => {
 			<span className={completed ? 'line-through text-white/20 transition-all' : 'transition-all'}>{title}</span>
 			<button
 				onClick={() => {
-					deleleTodo(id)
+					// deleleTodo(id)
 				}}
 				className=' transition-all hidden text-white/20 hover:text-white  group-hover:block mx-auto'
 			>

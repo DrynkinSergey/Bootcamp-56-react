@@ -1,23 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { postsReducer } from './postsSlice'
-import { favouritePostReducer } from './fovouriteSlice'
 //https://64abd6919edb4181202ea4d0.mockapi.io/todos
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
-import { persistConfigFav, persistConfigPosts, persistConfigUser } from './persistConfigs'
+import { persistConfigPosts, persistConfigUser } from './persistConfigs'
 import { todoReducer } from './todoSlice'
-import { bookReducer } from './Books/bookSlice'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
 import { userReducer } from './Auth/userSlice'
 const persistedReducerPosts = persistReducer(persistConfigPosts, postsReducer)
-const persistedReducerFav = persistReducer(persistConfigFav, favouritePostReducer)
 
 export const store = configureStore({
 	reducer: {
 		postList: persistedReducerPosts,
-		favourite: persistedReducerFav,
 		user: persistReducer(persistConfigUser, userReducer),
 		todoList: todoReducer,
-		booksList: bookReducer,
 	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({
