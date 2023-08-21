@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux'
 import icon from '../../assets/images/icon-check.svg'
-import { updateTodoThunk } from '../../redux/operations'
+import { deleteTodoThunk, updateTodoThunk } from '../../redux/operations'
 import { motion } from 'framer-motion'
-export const SingleTodo = ({ id, title, completed, idx }) => {
+export const SingleTodo = ({ id, text, completed, idx }) => {
 	const stylesActive = completed ? 'bg-gradient-to-br from-checkboxFrom to-checkboxTo' : ''
 	const dispatch = useDispatch()
 	return (
@@ -13,21 +13,21 @@ export const SingleTodo = ({ id, title, completed, idx }) => {
 				opacity: 0,
 				x: idx % 2 === 0 ? -200 : 200,
 			}}
-			transition={{ duration: 0.5 }}
 			className='group  list-none cursor-pointer  py-4  border-b-white/10 border-b-[1px] text-white/80 grid  bg-darkMain grid-cols-todo items-center'
 		>
 			<label className='relative inline-block cursor-pointer'>
 				<span
-					onClick={() => dispatch(updateTodoThunk({ id, title, completed: !completed }))}
+					onClick={() => dispatch(updateTodoThunk({ id, text, completed: !completed }))}
 					className={`${stylesActive} absolute h-5 w-5 flex items-center justify-center  left-4 top-[-10px] rounded-full border-white/20 border-[1px]`}
 				>
 					{completed && <img src={icon} alt='' />}
 				</span>
 			</label>
-			<span className={completed ? 'line-through text-white/20 transition-all' : 'transition-all'}>{title}</span>
+			<span className={completed ? 'line-through text-white/20 transition-all' : 'transition-all'}>{text}</span>
 			<button
 				onClick={() => {
 					// deleleTodo(id)
+					dispatch(deleteTodoThunk(id))
 				}}
 				className=' transition-all hidden text-white/20 hover:text-white  group-hover:block mx-auto'
 			>

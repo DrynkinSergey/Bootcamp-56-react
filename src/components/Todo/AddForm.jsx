@@ -7,8 +7,8 @@ export const AddForm = () => {
 	const handleSubmit = e => {
 		e.preventDefault()
 		if (e.target.addTodo.value.trim()) {
-			const title = e.target.addTodo.value.trim()
-			dispatch(addTodoThunk({ title }))
+			const text = e.target.addTodo.value.trim()
+			dispatch(addTodoThunk({ text }))
 
 			e.target.reset()
 			e.target.focus()

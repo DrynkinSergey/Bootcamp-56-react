@@ -1,18 +1,22 @@
 import { useSelector } from 'react-redux'
 import { SingleTodo } from './singleTodo'
-import { selectError, selectIsLoading } from '../../redux/selectors'
+import { selectError, selectIsLoading, selectTodos } from '../../redux/selectors'
 import { toast } from 'react-toastify'
+import { AnimatePresence } from 'framer-motion'
 
 export const TodoList = () => {
-	const ViewData = () => [].map((todo, idx) => <SingleTodo idx={idx} key={todo.id} {...todo} />).reverse()
+	const data = useSelector(selectTodos)
+
 	const loading = useSelector(selectIsLoading)
 	const error = useSelector(selectError)
 	return (
 		<div className='font-josefin '>
 			<ul className='rounded-md '>
-				{loading && ![].length && <h1 className='text-white text-4xl'>Loading...</h1>}
-				{error && toast.error(error)}
-				{!error && <ViewData />}
+				<AnimatePresence>
+					{data.map((todo, idx) => (
+						<SingleTodo idx={idx} key={todo.id} {...todo} />
+					))}
+				</AnimatePresence>
 			</ul>
 		</div>
 	)

@@ -7,8 +7,13 @@ import { Filter } from '../components/Todo/Filter'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { registerThunk } from '../redux/Auth/operations'
+import { fetchTodos } from '../redux/operations'
 
 export const Todo = () => {
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(fetchTodos())
+	}, [dispatch])
 	const bgImage = useMemo(
 		() => (
 			<>
