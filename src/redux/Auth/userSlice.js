@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { loginThunk, logoutThunk, registerThunk } from './operations'
+import { loginThunk, logoutThunk, refreshThunk, registerThunk } from './operations'
 
 // 1.
 // Створюємо слайс
@@ -14,6 +14,7 @@ const slice = createSlice({
 		token: '',
 		error: '',
 		isLoggedIn: false,
+		isRefreshing: false,
 	},
 	// Робимо екстра редьюсери, коли готові санки
 	extraReducers: builder => {
@@ -23,6 +24,17 @@ const slice = createSlice({
 				state.user = action.payload.user
 				state.token = action.payload.token
 				state.isLoggedIn = true
+			})
+			.addCase(refreshThunk.fulfilled, (state, action) => {
+				state.user = action.payload
+				state.isLoggedIn = true
+				state.isRefreshing = false
+			})
+			.addCase(refreshThunk.pending, (state, action) => {
+				state.isRefreshing = true
+			})
+			.addCase(refreshThunk.rejected, (state, action) => {
+				state.isRefreshing = false
 			})
 			.addCase(loginThunk.fulfilled, (state, action) => {
 				state.user = action.payload.user

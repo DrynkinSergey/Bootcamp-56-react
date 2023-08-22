@@ -28,7 +28,6 @@ export const registerThunk = createAsyncThunk(
 			const { data } = await API.post('users/signup', credentials)
 			//Отримаємо відповідь у data
 			// Встановлюємо токен з відповіді для подальших запитів
-			console.log(data)
 			setToken(data.token)
 			// Викидуємо дані для слайса та екстра редьюсерів
 			return data
@@ -54,6 +53,22 @@ export const logoutThunk = createAsyncThunk('auth/logout', async (_, thunkAPI) =
 	try {
 		const { data } = await API.post('users/logout')
 		clearToken()
+		return data
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error.message)
+	}
+})
+
+export const refreshThunk = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+	const savedToken = thunkAPI.getState().user.token
+	console.log(savedToken)
+	if (!savedToken) {
+		return thunkAPI.rejectWithValue('Token is not exist')
+	}
+	try {
+		setToken(savedToken)
+		const { data } = await API.get('users/me')
+		console.log(data)
 		return data
 	} catch (error) {
 		return thunkAPI.rejectWithValue(error.message)
