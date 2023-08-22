@@ -10,6 +10,7 @@
 		"@testing-library/user-event": "^13.5.0",
 		"axios": "^1.4.0",
 		"clsx": "^2.0.0",
+		"formik": "^2.4.3",
 		"framer-motion": "^10.16.0",
 		"json-server": "^0.17.3",
 		"modern-normalize": "^2.0.0",
@@ -28,7 +29,8 @@
 		"redux-persist": "^6.0.0",
 		"sass": "^1.64.1",
 		"styled-components": "^6.0.5",
-		"web-vitals": "^2.1.4"
+		"web-vitals": "^2.1.4",
+		"yup": "^1.2.0"
 	},
 	"scripts": {
 		"server": "json-server --watch -p 4444 db.json",

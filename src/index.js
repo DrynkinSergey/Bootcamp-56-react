@@ -8,15 +8,18 @@ import { BrowserRouter } from 'react-router-dom'
 import { persistor, store } from './redux'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
+import React from 'react'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-	<BrowserRouter>
-		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
-				<App />
-				<ToastContainer autoClose={1000} />
-			</PersistGate>
-		</Provider>
-	</BrowserRouter>
+	<React.StrictMode>
+		<BrowserRouter>
+			<Provider store={store}>
+				<PersistGate loading={null} persistor={persistor}>
+					<App />
+					<ToastContainer autoClose={1000} />
+				</PersistGate>
+			</Provider>
+		</BrowserRouter>
+	</React.StrictMode>
 )
