@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux'
-import { changeFilter } from '../../redux/todoSlice'
+import { addTodo, changeFilter } from '../../redux/todoSlice'
+import { nanoid } from '@reduxjs/toolkit'
 import { addTodoThunk } from '../../redux/operations'
 
 export const AddForm = () => {

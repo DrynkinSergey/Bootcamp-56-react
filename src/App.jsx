@@ -7,14 +7,20 @@ import { Posts } from './pages/Posts'
 import { Favourite } from './pages/Favourite'
 import { AddPost } from './pages/AddPost'
 import { Login } from './pages/Login'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Todo } from './pages/Todo'
 import { Books } from './pages/Books'
-import { useEffect } from 'react'
-import { registerThunk } from './redux/Auth/operations'
-import { Register } from './pages/Register'
 
 export const App = () => {
+	const isLoggedIn = useSelector(state => state.user.isLoggedIn)
+	if (!isLoggedIn) {
+		return (
+			<Routes>
+				<Route path='/' element={<Login />} />
+				<Route path='*' element={<Navigate to='/' />} />
+			</Routes>
+		)
+	}
 	return (
 		<>
 			<Routes>
@@ -25,8 +31,6 @@ export const App = () => {
 					<Route path='favourite' element={<Favourite />} />
 					<Route path='todo' element={<Todo />} />
 					<Route path='books' element={<Books />} />
-					<Route path='register' element={<Register />} />
-					<Route path='login' element={<Login />} />
 				</Route>
 				<Route path='*' element={<NotFound />} />
 			</Routes>

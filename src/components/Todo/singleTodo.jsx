@@ -1,11 +1,14 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import icon from '../../assets/images/icon-check.svg'
-import { updateTodoThunk } from '../../redux/operations'
+import { removeTodo, toggleTodo } from '../../redux/todoSlice'
+import { deleteTodoThunk, updateTodoThunk } from '../../redux/operations'
+import { selectIsLoading, selectLoading } from '../../redux/selectors'
 import { motion } from 'framer-motion'
 import { useDeleteTodoMutation } from '../../redux/rtkQUERY/todosApi'
 export const SingleTodo = ({ id, title, completed, idx }) => {
 	const stylesActive = completed ? 'bg-gradient-to-br from-checkboxFrom to-checkboxTo' : ''
 	const dispatch = useDispatch()
+	const loading = useSelector(selectIsLoading)
 	const [deleleTodo] = useDeleteTodoMutation()
 	return (
 		<motion.li

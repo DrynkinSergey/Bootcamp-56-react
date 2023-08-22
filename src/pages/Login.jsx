@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { loginThunk } from '../redux/Auth/operations'
+import { toast } from 'react-toastify'
+import { login } from '../redux/userSlice'
+import { useNavigate } from 'react-router-dom'
 
 export const Login = () => {
-	const [email, setEmail] = useState('')
+	const [name, setName] = useState('')
 	const [password, setPassword] = useState('')
-
 	const dispatch = useDispatch()
-
+	const navigate = useNavigate()
 	const handleSubmit = e => {
 		e.preventDefault()
-		const credentials = { email, password }
-		dispatch(loginThunk(credentials))
+		dispatch(login({ name, password }))
+		navigate('/')
+		toast.success('You add post! ')
 	}
 	return (
 		<section className='flex flex-col gap-4 mx-auto min-h-[80vh] items-center justify-center mt-4 '>
@@ -22,8 +24,8 @@ export const Login = () => {
 						className='px-4 text-2xl   border-2 border-black'
 						placeholder='Enter your login....'
 						type='text'
-						value={email}
-						onChange={e => setEmail(e.target.value)}
+						value={name}
+						onChange={e => setName(e.target.value)}
 					/>
 					<input
 						placeholder='Enter your pass....'

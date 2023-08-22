@@ -3,10 +3,10 @@ import bg from '../assets/images/bg-desktop-dark.jpg'
 import bgMobile from '../assets/images/bg-mobile-dark.jpg'
 import { AddForm } from '../components/Todo/AddForm'
 import { TodoList } from '../components/Todo/todoList'
-import { Filter } from '../components/Todo/Filter'
+import { fetchTodos } from '../redux/operations'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import { registerThunk } from '../redux/Auth/operations'
+import { Filter } from '../components/Todo/Filter'
 
 export const Todo = () => {
 	const bgImage = useMemo(

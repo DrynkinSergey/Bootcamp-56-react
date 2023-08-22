@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { selectNotCompletedWithMemo } from '../../redux/selectors'
+import { selectNotCompleted, selectNotCompletedWithMemo, selectTodos } from '../../redux/selectors'
 import { setFilter } from '../../redux/todoSlice'
+import { calculateTodos } from '../../helpers/calculateTodos'
 
 export const Filter = () => {
 	const dispatch = useDispatch()
+	const todos = useSelector(selectTodos)
 
 	const notCompleted = useSelector(selectNotCompletedWithMemo)
 	const filter = ''
