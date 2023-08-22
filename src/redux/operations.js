@@ -18,8 +18,8 @@ export const fetchTodos = createAsyncThunk('fetchTodos', async (_, thunkAPI) => 
 
 export const addTodoThunk = createAsyncThunk('addTodo', async (body, thunkAPI) => {
 	try {
-		const { data } = await API.post('/tasks', body)
-		return data
+		await API.post('/tasks', body)
+		thunkAPI.dispatch(fetchTodos())
 	} catch (error) {
 		return thunkAPI.rejectWithValue(error.message)
 	}
@@ -27,10 +27,10 @@ export const addTodoThunk = createAsyncThunk('addTodo', async (body, thunkAPI) =
 
 export const deleteTodoThunk = createAsyncThunk(
 	'todos/delete',
-	async (id, { rejectWithValue }) => {
+	async (id, { rejectWithValue, dispatch }) => {
 		try {
 			await API.delete(`/tasks/${id}`)
-			return id
+			dispatch(fetchTodos())
 		} catch (error) {
 			return rejectWithValue(error.message)
 		}
@@ -47,10 +47,10 @@ export const deleteTodoThunk = createAsyncThunk(
 	}
 )
 
-export const updateTodoThunk = createAsyncThunk('todos/update', async (body, { rejectWithValue }) => {
+export const updateTodoThunk = createAsyncThunk('todos/update', async (body, { dispatch, rejectWithValue }) => {
 	try {
-		const { data } = await API.patch(`/tasks/${body.id}`, body)
-		return data.id
+		await API.patch(`/tasks/${body.id}`, body)
+		dispatch(fetchTodos())
 	} catch (error) {
 		return rejectWithValue(error.message)
 	}

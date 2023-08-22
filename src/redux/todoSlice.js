@@ -29,18 +29,7 @@ const slice = createSlice({
 			.addCase(fetchTodos.fulfilled, (state, action) => {
 				state.todos = action.payload
 			})
-			.addCase(addTodoThunk.fulfilled, (state, { payload }) => {
-				state.todos.push(payload)
-			})
-			.addCase(deleteTodoThunk.fulfilled, (state, { payload }) => {
-				state.todos = state.todos.filter(item => item.id !== payload)
-			})
-			.addCase(updateTodoThunk.fulfilled, (state, { payload }) => {
-				const item = state.todos.find(item => item.id === payload)
-				if (item) {
-					item.completed = !item.completed
-				}
-			})
+
 			.addCase(logoutThunk.fulfilled, (state, action) => {
 				state.todos = []
 			})

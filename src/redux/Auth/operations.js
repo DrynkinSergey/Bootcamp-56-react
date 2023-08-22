@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { fetchTodos } from '../operations'
 // https://goit-task-manager.herokuapp.com/
 // Example1234qwe@mail.com
 
@@ -41,6 +42,7 @@ export const registerThunk = createAsyncThunk(
 export const loginThunk = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
 	try {
 		const { data } = await API.post('users/login', credentials)
+
 		console.log(data)
 		setToken(data.token)
 		return data
